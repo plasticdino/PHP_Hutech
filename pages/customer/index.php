@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include_once("header.php"); ?>
+<?php include_once("partials/header.php"); ?>
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
@@ -209,7 +209,7 @@
 
   </main><!-- End #main -->
 
-  <?php include_once("footer.php"); ?>
+  <?php include_once("partials/footer.php"); ?>
 
 </body>
 </html>

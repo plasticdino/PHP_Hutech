@@ -17,7 +17,7 @@
       $connection = $this->connect();
 
       $result = $connection->query($queryString);
-      $connection->close();
+      //$connection->close();
       return $result;
     }
 

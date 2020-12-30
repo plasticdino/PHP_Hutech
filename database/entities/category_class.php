@@ -18,7 +18,7 @@ class Category{
     $file_temp = $this->img['tmp_name'];
     $user_file = $this->img['name'];
     $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
-    $filepath = "../../media/image/".$timestamp.$user_file;
+    $filepath = "../../media/image/category/".$timestamp.$user_file;
     if(move_uploaded_file($file_temp, $filepath) == false)
     {
       return false;
@@ -39,11 +39,34 @@ class Category{
     $result = $db->select_to_array($sql);
     return $result;
   }
+
   public static function delete_category($id)
   {
     $db = new Db();
     $sql = "DELETE from Category where CategoryId = $id" ;
     $result =  $db->query_execute($sql);
+    return $result;
+  }
+
+  public function update_category($cateId, $haveImage){
+    if ($haveImage == true)
+    {
+      $file_temp = $this->img['tmp_name'];
+      $user_file = $this->img['name'];
+      $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
+      $filepath = "../../media/image/category/".$timestamp.$user_file;
+      if(move_uploaded_file($file_temp, $filepath) == false)
+      {
+        return false;
+      }
+      $sql = "UPDATE Category SET CategoryName = '$this->name', CategoryImage = '$filepath',CategoryDescription='$this->desc' where CategoryId = '$cateId'";
+    }
+    else
+    {
+      $sql = "UPDATE Category SET CategoryName = '$this->name',CategoryDescription='$this->desc' where CategoryId = '$cateId'";
+    }
+    $db = new Db();
+    $result = $db->query_execute($sql);
     return $result;
   }
 }
