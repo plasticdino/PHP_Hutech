@@ -12,16 +12,16 @@
        <div class="modal-body">
            <div class="form-group">
              <label>ID</label>
-             <input type="text" name="category_id" id="delete_category_id" class="form-control" placeholder="ID" readonly="true">
+             <input type="text" name="delete_category_id" id="delete_category_id" class="form-control" placeholder="ID" readonly="true">
            </div>
            <div class="form-group">
              <label>Category name</label>
-             <textarea type="text" name="category_name" id="delete_category_name" class="form-control" placeholder="Category Name">
+             <textarea type="text" name="category_name" id="delete_category_name" class="form-control" placeholder="Category Name" readonly="true">
              </textarea>
            </div>
            <div class="form-group">
              <label>Category description</label>
-             <textarea rows='4' type="text" name="category_description" id="delete_category_description" class="form-control" placeholder="Category Description">
+             <textarea rows='4' type="text" name="category_description" id="delete_category_description" class="form-control" placeholder="Category Description" readonly="true">
              </textarea>
            </div>
            <div class="form-group">

@@ -5,11 +5,12 @@
   require_once("../../database/entities/category_class.php");
 
   if(isset($_POST["btnsubmit"])){
+    $cateId = $_POST["txtCateId"];
     $cateName = $_POST["txtCateName"];
     $cateImage = $_FILES["txtCateImage"];
     $cateDesc = $_POST["txtCateDesc"];
 
-    $newCategory = new Category($cateName, $cateImage, $cateDesc);
+    $newCategory = new Category($cateId,$cateName, $cateImage, $cateDesc);
 
     $result = $newCategory->insert_category();
     if(!$result)
@@ -36,6 +37,12 @@
                   }
                  ?><h4 class="card-title">Add category</h4>
                 <form class="forms-sample" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="CategoryName">Category Id</label>
+                    <input type="text" class="form-control" id="CategoryId"
+                    name="txtCateId" placeholder="Category Id"
+                    value="<?php echo isset($_POST["txtCateId"])?$_POST["txtCateId"]:""; ?>"/>
+                  </div>
                   <div class="form-group">
                     <label for="CategoryName">Category Name</label>
                     <input type="text" class="form-control" id="CategoryName"
@@ -68,23 +75,7 @@
       </div>
 
     </div>
-    <script src="assets/vendors/base/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/template.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/data-table.js"></script>
-    <script src="assets/js/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables.bootstrap4.js"></script>
+    <?php include_once("partials/scripts.php") ?>
 
   </body>
 

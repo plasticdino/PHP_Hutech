@@ -11,16 +11,16 @@
      <form action="" method="POST"  enctype="multipart/form-data">
        <div class="modal-body">
            <div class="form-group">
-             <label>ID</label>
+             <label>Category Id</label>
              <input type="text" name="category_id" id="category_id" class="form-control" placeholder="ID" readonly="true">
            </div>
            <div class="form-group">
-             <label>Category name</label>
+             <label>Category Name</label>
              <textarea type="text" name="category_name" id="category_name" class="form-control" placeholder="Category Name">
              </textarea>
            </div>
            <div class="form-group">
-             <label>Category description</label>
+             <label>Category Description</label>
              <textarea rows='4' type="text" name="category_description" id="category_description" class="form-control" placeholder="Category Description">
              </textarea>
            </div>

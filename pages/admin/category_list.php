@@ -12,15 +12,15 @@
     $cateImage = $_FILES["category_image"];
     $cateDesc = $_POST["category_description"];
 
-    $newCategory = new Category($cateName, $cateImage, $cateDesc);
+    $newCategory = new Category($cateId,$cateName, $cateImage, $cateDesc);
 
     if ($cateImage['name'] == '' || $cateImage['size'] == 0)
     {
-      $result = $newCategory->update_category($cateId, false);
+      $result = $newCategory->update_category(false);
     }
     else
     {
-      $result = $newCategory->update_category($cateId, true);
+      $result = $newCategory->update_category(true);
     }
     if(!$result)
     {
@@ -31,20 +31,20 @@
       header("Location:category_list.php?updated");
     }
   }
-    if(isset($_POST["delete_category"])){
-      $cateId = $_POST["category_id"];
+  if(isset($_POST["delete_category"])){
+    $cateId = $_POST["delete_category_id"];
 
-      $newCategory = new Category($cateName, '', '');
-      $result = $newCategory->delete_category($cateId);
+    $newCategory = new Category($cateId,'', '', '');
+    $result = $newCategory->delete_category();
 
-      if(!$result)
-      {
-        header("Location:category_list.php?failure");
-      }
-      else
-      {
-        header("Location:category_list.php?deleted");
-      }
+    if(!$result)
+    {
+      header("Location:category_list.php?failure");
+    }
+    else
+    {
+      header("Location:category_list.php?deleted");
+    }
   }
 ?><body>
     <div class="container-scroller"><?php
@@ -56,7 +56,7 @@
             <div class="card">
               <div class="card-body"><?php
                     if(isset($_GET["updated"])){
-                      $notification = "Insert category successfully !!!";
+                      $notification = "Update category successfully !!!";
                       include_once("partials/notify.php");
                     }
                     else if(isset($_GET["deleted"])){
@@ -138,29 +138,13 @@
       </div>
     </div>
 
-    <script src="assets/vendors/base/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/template.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/data-table.js"></script>
-    <script src="assets/js/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables.bootstrap4.js"></script>
+    <?php include_once("partials/scripts.php") ?>
 
     <script>
       $(document).ready(function (){
         var content = new Array();
         content =<?php echo json_encode($cates); ?>;
-        console.log(content);
+        //console.log(content);
         btnedit = document.querySelectorAll('.btnedit');
         for(let i = 0; i < content.length; i++){
           btnedit[i].onclick = function(){
