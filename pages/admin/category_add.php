@@ -20,6 +20,7 @@
     else
     {
       header("Location: category_add.php?inserted");
+
     }
   }
  ?><body>
@@ -35,13 +36,17 @@
                     $notification = "Insert category successfully !!!";
                     include_once("partials/notify.php");
                   }
+                  else
+                  {
+
+                  }
                  ?><h4 class="card-title">Add category</h4>
                 <form class="forms-sample" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="CategoryName">Category Id</label>
                     <input type="text" class="form-control" id="CategoryId"
                     name="txtCateId" placeholder="Category Id"
-                    value="<?php echo isset($_POST["txtCateId"])?$_POST["txtCateId"]:""; ?>"/>
+                    value="<?php echo isset($_POST["txtCateId"])?$_POST["txtCateId"]:""; ?>" required="true"/>
                   </div>
                   <div class="form-group">
                     <label for="CategoryName">Category Name</label>

@@ -65,16 +65,16 @@
                     }
                    ?><h4 class="card-title">Category List</h4>
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th width:"10%">
                           Id
                         </th>
-                        <th width:"10%">
+                        <th width:"20%">
                           Image
                         </th>
-                        <th width:"40%">
+                        <th width:"30%">
                           Name
                         </th>
                         <th width:"30%">

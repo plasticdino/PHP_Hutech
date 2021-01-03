@@ -70,5 +70,17 @@ class Category{
     $result = $db->query_execute($sql);
     return $result;
   }
+  public function id_exist()
+  {
+    $db = new Db();
+    $sql = "SELECT CategoryId FROM Category WHERE CategoryId ='$this->id'";
+    $result = $db->query_execute($sql);
+
+    if (!empty($result))
+    {
+      return true;
+    }
+    return false;
+  }
 }
  ?>

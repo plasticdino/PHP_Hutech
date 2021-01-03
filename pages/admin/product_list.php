@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="vi"><?php
-  $title = "Category Add";
+  $title = "Product Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/category_class.php");
-  $cates = Category::list_category();
+  require_once("../../database/entities/product_class.php");
+  $pros = Product::list_product();
 
-  if(isset($_POST["update_category"])){
-    $cateId = $_POST["category_id"];
-    $cateName = $_POST["category_name"];
-    $getImage = $_POST["category_image"];
-    $cateImage = $_FILES["category_image"];
-    $cateDesc = $_POST["category_description"];
+  if(isset($_POST["edit_product"])){
+    $proId = $_POST["product_id"];
+    $proName = $_POST["product_name"];
+    $proPrice = $_POST["product_price"];
+    $proDesc = $_POST["product_description"];
+    $proStorage = $_POST["product_storage"];
+    $cateId = $_POST["Category_Id"];
+    $getImage = $_POST["product_image"];
+    $proImage = $_FILES["product_image"];
 
-    $newCategory = new Category($cateId,$cateName, $cateImage, $cateDesc);
+    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage);
 
-    if ($cateImage['name'] == '' || $cateImage['size'] == 0)
+    if ($proImage['name'] == '' || $proImage['size'] == 0)
     {
-      $result = $newCategory->update_category(false);
+      $result = $newProduct->update_product(false);
     }
     else
     {
-      $result = $newCategory->update_category(true);
+      $result = $newProduct->update_product(true);
     }
     if(!$result)
     {
-      header("Location:category_list.php?failure");
+      header("Location:product_list.php?failure");
     }
     else
     {
-      header("Location:category_list.php?updated");
+      header("Location:product_list.php?updated");
     }
   }
-  if(isset($_POST["delete_category"])){
-    $cateId = $_POST["delete_category_id"];
-
-    $newCategory = new Category($cateId,'', '', '');
-    $result = $newCategory->delete_category();
+  if(isset($_POST["delete_product"])){
+    $proId = $_POST["delete_product_id"];
+    $newProduct = new Product($proId,'', '', '','', '', '');
+    $result = $newProduct->delete_product();
 
     if(!$result)
     {
-      header("Location:category_list.php?failure");
+      header("Location:product_list.php?failure");
     }
     else
     {
-      header("Location:category_list.php?deleted");
+      header("Location:product_list.php?deleted");
     }
   }
 ?><body>
@@ -63,22 +65,31 @@
                       $notification = "Delete category successfully !!!";
                       include_once("partials/notify.php");
                     }
-                   ?><h4 class="card-title">Category List</h4>
+                   ?><h4 class="card-title">Product List</h4>
                 <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th width:"10%">
+                        <th width:"5%">
                           Id
                         </th>
                         <th width:"10%">
                           Image
                         </th>
-                        <th width:"40%">
+                        <th width:"10%">
                           Name
                         </th>
-                        <th width:"30%">
+                        <th width:"10%">
+                          Category type
+                        </th>
+                        <th width:"25%">
                           Description
+                        </th>
+                        <th width:"15%">
+                          Price
+                        </th>
+                        <th width:"15%">
+                          Storage
                         </th>
                         <th width:"5%">
                           Edit
@@ -90,14 +101,14 @@
                     </thead>
 
                     <tbody><?php
-                      foreach ($cates as $item){
+                      foreach ($pros as $item){
                        ?><tr>
-                        <td ><?php echo $item["CategoryId"]; ?></td>
+                        <td ><?php echo $item["ProductId"]; ?></td>
                         <td class="py-1">
-                          <img src="<?php echo $item["CategoryImage"];?>" class="img-responsive" alt="Image">
+                          <img src="<?php echo $item["ProductImage"];?>" class="img-responsive" alt="Image">
                         </td>
                         <td><?php
-                          $string = $item["CategoryName"];
+                          $string = $item["ProductName"];
                           if (strlen($string) <= 30)
                           {
                             echo $string;
@@ -107,8 +118,9 @@
                             echo (substr($string, 0, 30). "...");
                           }
                           ?></td>
+                        <td ><?php echo $item["CategoryId"]; ?></td>
                         <td><?php
-                            $string = $item["CategoryDescription"];
+                            $string = $item["ProductDescription"];
                             if (strlen($string) <= 30)
                             {
                               echo $string;
@@ -118,6 +130,8 @@
                               echo (substr($string, 0, 30). "...");
                             }
                            ?></td>
+                        <td ><?php echo $item["ProductPrice"]; ?></td>
+                        <td ><?php echo $item["Storage"]; ?></td>
                         <td>
                           <button type="edit" class="btn btn-primary mr-2 btn-sm btnedit">EDIT</button>
                         </td>
@@ -131,8 +145,8 @@
               </div>
             </div><?php
              include_once("partials/footer.php");
-             include_once("category_edit.php");
-             include_once("category_delete.php");
+             include_once("product_edit.php");
+             include_once("product_delete.php");
              ?></div>
         </div>
       </div>
@@ -143,42 +157,48 @@
     <script>
       $(document).ready(function (){
         var content = new Array();
-        content =<?php echo json_encode($cates); ?>;
+        content =<?php echo json_encode($pros); ?>;
         //console.log(content);
         btnedit = document.querySelectorAll('.btnedit');
         for(let i = 0; i < content.length; i++){
           btnedit[i].onclick = function(){
             $('#editmodal').modal('show');
+            $('#product_id').val(content[i].ProductId);
+            $('#product_name').val(content[i].ProductName);
+            $('#product_description').val(content[i].ProductDescription);
+            $('#product_price').val(content[i].ProductPrice);
+            $('#product_storage').val(content[i].Storage);
             $('#category_id').val(content[i].CategoryId);
-            $('#category_name').val(content[i].CategoryName);
-            $('#category_description').val(content[i].CategoryDescription);
 
             //show image fro database
-            var _img = document.getElementById('show_category_image');
+            var _img = document.getElementById('show_product_image');
             var newImg = new Image;
             newImg.onload = function()
             {
                 _img.src = this.src;
             }
-            newImg.src = content[i].CategoryImage;
+            newImg.src = content[i].ProductImage;
           }
         }
         btndelete = document.querySelectorAll('.btndelete');
         for(let i = 0; i < content.length; i++){
           btndelete[i].onclick = function(){
             $('#deletemodal').modal('show');
+            $('#delete_product_id').val(content[i].ProductId);
+            $('#delete_product_name').val(content[i].ProductName);
+            $('#delete_product_description').val(content[i].ProductDescription);
+            $('#delete_product_price').val(content[i].ProductPrice);
+            $('#delete_product_storage').val(content[i].Storage);
             $('#delete_category_id').val(content[i].CategoryId);
-            $('#delete_category_name').val(content[i].CategoryName);
-            $('#delete_category_description').val(content[i].CategoryDescription);
 
             //show image fro database
-            var _img = document.getElementById('show_delete_category_image');
+            var _img = document.getElementById('show_delete_product_image');
             var newImg = new Image;
             newImg.onload = function()
             {
                 _img.src = this.src;
             }
-            newImg.src = content[i].CategoryImage;
+            newImg.src = content[i].ProductImage;
           }
         }
       });
@@ -188,7 +208,7 @@
               var reader = new FileReader();
 
               reader.onload = function (e) {
-                  $('#show_category_image')
+                  $('#show_product_image')
                       .attr('src', e.target.result);
               };
 

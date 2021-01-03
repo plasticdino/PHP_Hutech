@@ -23,14 +23,14 @@ class Category{
     $file_temp = $this->img['tmp_name'];
     $user_file = $this->img['name'];
     $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
-    $filepath = "../../media/image/category/".$timestamp.$user_file;
+    $filepath = "../../media/image/user/".$timestamp.$user_file;
     if(move_uploaded_file($file_temp, $filepath) == false)
     {
       return false;
     }
 
     $db = new Db();
-    $sql = "INSERT INTO Category (CategoryId, CategoryName, CategoryImage, CategoryDescription) VALUES
+    $sql = "INSERT INTO User (UserId, UserName, CategoryImage, CategoryDescription) VALUES
     ('$this->id','$this->name','$filepath','$this->desc')";
 
     $result = $db->query_execute($sql);
