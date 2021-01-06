@@ -11,7 +11,7 @@
     $proPrice = $_POST["product_price"];
     $proDesc = $_POST["product_description"];
     $proStorage = $_POST["product_storage"];
-    $cateId = $_POST["Category_Id"];
+    $cateId = $_POST["category_id"];
     $getImage = $_POST["product_image"];
     $proImage = $_FILES["product_image"];
 
@@ -169,6 +169,7 @@
             $('#product_price').val(content[i].ProductPrice);
             $('#product_storage').val(content[i].Storage);
             $('#category_id').val(content[i].CategoryId);
+
 
             //show image fro database
             var _img = document.getElementById('show_product_image');

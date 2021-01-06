@@ -20,6 +20,21 @@
              </textarea>
            </div>
            <div class="form-group">
+             <label>Product Price</label>
+             <textarea type="text" name="product_price" id="product_price" class="form-control" placeholder="Product Name">
+             </textarea>
+           </div>
+           <div class="form-group">
+             <label>Product Storage</label>
+             <textarea type="text" name="product_storage" id="product_storage" class="form-control" placeholder="Product Name">
+             </textarea>
+           </div>
+           <div class="form-group">
+             <label>Category Id</label>
+             <textarea type="text" name="category_id" id="category_id" class="form-control" placeholder="Product Name">
+             </textarea>
+           </div>
+           <div class="form-group">
              <label>Product Description</label>
              <textarea rows='4' type="text" name="product_description" id="product_description" class="form-control" placeholder="Product Description">
              </textarea>

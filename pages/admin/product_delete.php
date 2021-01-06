@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog">
  <div class="modal-dialog" role="document">
    <div class="modal-content">
@@ -16,16 +15,31 @@
            </div>
            <div class="form-group">
              <label>Product name</label>
-             <textarea type="text" name="product_name" id="delete_product_name" class="form-control" placeholder="Product Name" readonly="true">
+             <textarea type="text" id="delete_product_name" class="form-control" placeholder="Product Name" readonly="true">
+             </textarea>
+           </div>
+           <div class="form-group">
+             <label>Product price</label>
+             <textarea type="text" id="delete_product_price" class="form-control" placeholder="Product Price" readonly="true">
+             </textarea>
+           </div>
+           <div class="form-group">
+             <label>Product storage</label>
+             <textarea type="text" id="delete_product_storage" class="form-control" placeholder="Product Storage" readonly="true">
+             </textarea>
+           </div>
+           <div class="form-group">
+             <label>Category type</label>
+             <textarea type="text" id="delete_category_id" class="form-control" placeholder="Category Type" readonly="true">
              </textarea>
            </div>
            <div class="form-group">
              <label>Product description</label>
-             <textarea rows='4' type="text" name="product_description" id="delete_product_description" class="form-control" placeholder="Product Description" readonly="true">
+             <textarea rows='4' type="text" id="delete_product_description" class="form-control" placeholder="Product Description" readonly="true">
              </textarea>
            </div>
            <div class="form-group">
-             <label>Product Image</label>
+             <label>Product image</label>
              </br>
              <img class="img-responsive py-1 img-fluid" id="show_delete_product_image" alt="Image" src="#">
            </div>

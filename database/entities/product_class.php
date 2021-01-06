@@ -92,5 +92,26 @@ class Product{
     }
     return false;
   }
+  public function list_product_by_cateid($cateid)
+  {
+    $db = new Db();
+    $sql = "SELECT * FROM product WHERE CategoryId = '$cateid'";
+    $result = $db->select_to_array($sql);
+    return $result;
+  }
+  public function list_product_relate($cateid)
+  {
+    $db = new Db();
+    $sql = "SELECT * FROM product WHERE CategoryId='$cateid' AND ProductId!='$this->id'";
+    $result = $db->select_to_array($sql);
+    return $result;
+  }
+  public function get_product($pro_id){
+    $db = new Db();
+    $sql = "SELECT * FROM product WHERE ProductId = '$pro_id'";
+    $result = $db->select_to_array($sql);
+    return $result ;
+  }
+
 }
  ?>
