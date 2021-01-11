@@ -80,11 +80,11 @@
                                               <i class="icon_bag_alt"></i>
                                             </a>
                                           </li>
-                                          <li class="w-icon active">
+                                          <!-- <li class="w-icon active">
                                             <a href="#">
                                               <i class="icon_heart_alt"></i>
                                             </a>
-                                          </li>
+                                          </li> -->
                                           <li class="w-icon active">
                                             <a href="#quickview" class="quickview" data-toggle="modal" data-id="<?php echo $item["ProductId"]; ?>">
                                               <i class="icon_zoom-in_alt"></i>
@@ -133,18 +133,8 @@
     <?php include_once("partials/scripts.php"); ?>
 
     <script>
-// $(document).ready(function () {
-//     $('body').on('click', '.quickview',function(){
-//             var text = $(this).attr('data-id');
-//             console.log(text);
-//              $("#s_id").html(text);
-//              document.getElementById('main').innerHTML = text;
-//              var content = <?php echo json_encode($prods[2]); ?>;
-//              $('#s_product_id').val(content.ProductId);
-//              $('#s_product_name').val(content.ProductName);
-//         })
-//     });
 
+    ///show pop up quickview
     $(document).ready(function (){
       var cate_list = new Array();
       cate_list = <?php echo json_encode($cates); ?>;
@@ -181,9 +171,6 @@
       }
     });
     </script>
-
-
-
 </body>
 
 </html>

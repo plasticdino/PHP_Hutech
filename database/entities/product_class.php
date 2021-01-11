@@ -9,8 +9,9 @@ class Product{
   public $storage;
   public $cateid;
   public $img;
+  public $sale;
 
-  public function __construct ($id, $name, $price, $desc, $storage, $cateid, $img)
+  public function __construct ($id, $name, $price, $desc, $storage, $cateid, $img, $sale)
   {
     $this->id = $id;
     $this->name = $name;
@@ -19,6 +20,7 @@ class Product{
     $this->storage = $storage;
     $this->cateid = $cateid;
     $this->img = $img;
+    $this->sale = $sale;
   }
 
   public function insert_product(){
@@ -92,6 +94,8 @@ class Product{
     }
     return false;
   }
+
+
   public function list_product_by_cateid($cateid)
   {
     $db = new Db();
@@ -99,6 +103,8 @@ class Product{
     $result = $db->select_to_array($sql);
     return $result;
   }
+
+  //lấy thông tin các sản phẩm liên quan
   public function list_product_relate($cateid)
   {
     $db = new Db();
@@ -106,6 +112,8 @@ class Product{
     $result = $db->select_to_array($sql);
     return $result;
   }
+
+  ///lấy thông tin sản phẩm
   public function get_product($pro_id){
     $db = new Db();
     $sql = "SELECT * FROM product WHERE ProductId = '$pro_id'";

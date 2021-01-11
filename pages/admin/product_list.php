@@ -15,7 +15,7 @@
     $getImage = $_POST["product_image"];
     $proImage = $_FILES["product_image"];
 
-    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage);
+    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,'');
 
     if ($proImage['name'] == '' || $proImage['size'] == 0)
     {
@@ -36,7 +36,7 @@
   }
   if(isset($_POST["delete_product"])){
     $proId = $_POST["delete_product_id"];
-    $newProduct = new Product($proId,'', '', '','', '', '');
+    $newProduct = new Product($proId,'', '', '','', '', '','');
     $result = $newProduct->delete_product();
 
     if(!$result)

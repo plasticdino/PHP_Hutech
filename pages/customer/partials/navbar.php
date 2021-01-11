@@ -3,6 +3,7 @@ require_once("../../database/entities/product_class.php");
 require_once("../../database/entities/category_class.php");
 
   $cates = Category::list_category();
+  $prods = Product::list_product();
 ?>
 <!-- <div id="preloder">
     <div class="loader"></div>
@@ -21,10 +22,10 @@ require_once("../../database/entities/category_class.php");
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div class="advanced-search">
-                        <select class="category-btn">
+                        <select class="category-btn"  onchange="location = this.value;">
 									<option selected="selected">All Category</option>
                   <?php foreach($cates as $item) {
-                    echo "<option value=".$item["CategoryId"].">".$item["CategoryName"]."</option>";
+                    echo "<option value=shop.php?cateid=".$item["CategoryId"].">".$item["CategoryName"]."</option>";
                   } ?>
 
 								</select>
@@ -40,12 +41,6 @@ require_once("../../database/entities/category_class.php");
                           <a href="#" class="login-panel">
                             <i class="fa fa-user"></i>
                           </a>
-                        </li>
-                        <li class="heart-icon">
-                            <a href="#">
-                                <i class="icon_heart_alt"></i>
-                                <span>1</span>
-                            </a>
                         </li>
                         <li class="cart-icon">
                             <a href="#">

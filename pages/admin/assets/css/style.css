@@ -20,7 +20,7 @@
     + Color Functions Mixins
     + Badge Mixins
     + Blockquote Mixins
-    
+
   * Core Styles
     + Reset Styles
     + Fonts
@@ -43,7 +43,7 @@
     + Lists
     + Tables
   * Plugin overrides
-    + Data-tables  
+    + Data-tables
   * Landing screens
     + Auth
   * Layout
@@ -21907,3 +21907,37 @@ dl li {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+/* .img-wrap {
+  width: 200px;
+  height: 150px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0;
+  padding-top: 100px;
+}
+
+div > img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+} */
+
+.button-align {
+  display: flex;
+  justify-content: flex-end;
+
+}
+.cus_button {
+  margin-right: 10px;
+}
+
+.cus_img
+{
+  width: 100%;
+  padding-top: 10px;
+}

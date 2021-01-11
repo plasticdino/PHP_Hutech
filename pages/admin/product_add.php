@@ -14,7 +14,7 @@
     $cateId = $_POST["txtCateID"];
     $proImage = $_FILES["txtProImage"];
 
-    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage);
+    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,'');
 
     $result = $newProduct->insert_product();
     if(!$result)

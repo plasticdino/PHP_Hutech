@@ -16,14 +16,14 @@
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     font-size: .875rem;
-    font-weight: bold; 
+    font-weight: bold;
   }
   .card-subtitle {
     @extend .text-gray;
     font-weight: 400;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
-  
+
   }
   .card-description {
     margin-bottom: .875rem;
@@ -73,7 +73,7 @@
         font-size: 20px;
       }
       .weather-temp {
-        margin-top: .5rem;        
+        margin-top: .5rem;
         margin-bottom: 0;
         opacity: .5;
         font-size: .75rem;
