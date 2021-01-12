@@ -116,7 +116,7 @@ class Product{
   ///lấy thông tin sản phẩm
   public function get_product($pro_id){
     $db = new Db();
-    $sql = "SELECT * FROM product WHERE ProductId = '$pro_id'";
+    $sql = "SELECT * FROM Product WHERE ProductId = '$pro_id'";
     $result = $db->select_to_array($sql);
     return $result ;
   }

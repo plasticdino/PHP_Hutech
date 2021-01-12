@@ -5,35 +5,6 @@
   require_once("../../database/entities/product_class.php");
   $pros = Product::list_product();
 
-  if(isset($_POST["edit_product"])){
-    $proId = $_POST["product_id"];
-    $proName = $_POST["product_name"];
-    $proPrice = $_POST["product_price"];
-    $proDesc = $_POST["product_description"];
-    $proStorage = $_POST["product_storage"];
-    $cateId = $_POST["category_id"];
-    $getImage = $_POST["product_image"];
-    $proImage = $_FILES["product_image"];
-
-    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,'');
-
-    if ($proImage['name'] == '' || $proImage['size'] == 0)
-    {
-      $result = $newProduct->update_product(false);
-    }
-    else
-    {
-      $result = $newProduct->update_product(true);
-    }
-    if(!$result)
-    {
-      header("Location:product_list.php?failure");
-    }
-    else
-    {
-      header("Location:product_list.php?updated");
-    }
-  }
   if(isset($_POST["delete_product"])){
     $proId = $_POST["delete_product_id"];
     $newProduct = new Product($proId,'', '', '','', '', '','');
@@ -103,7 +74,7 @@
                     <tbody><?php
                       foreach ($pros as $item){
                        ?><tr>
-                        <td ><?php echo $item["ProductId"]; ?></td>
+                        <td><?php echo $item["ProductId"]; ?></td>
                         <td class="py-1">
                           <img src="<?php echo $item["ProductImage"];?>" class="img-responsive" alt="Image">
                         </td>
@@ -133,7 +104,8 @@
                         <td ><?php echo $item["ProductPrice"]; ?></td>
                         <td ><?php echo $item["Storage"]; ?></td>
                         <td>
-                          <button type="edit" class="btn btn-primary mr-2 btn-sm btnedit">EDIT</button>
+                          <button type="button" onclick="location.href='product_edit.php?id=<?php echo $item["ProductId"]; ?>'"
+                            class="btn btn-primary mr-2 btn-sm btnedit">EDIT</button>
                         </td>
                         <td>
                           <button type="delete" class="btn btn-primary mr-2 btn-sm btndelete">DELETE</button>
@@ -145,7 +117,6 @@
               </div>
             </div><?php
              include_once("partials/footer.php");
-             include_once("product_edit.php");
              include_once("product_delete.php");
              ?></div>
         </div>
@@ -158,29 +129,7 @@
       $(document).ready(function (){
         var content = new Array();
         content =<?php echo json_encode($pros); ?>;
-        //console.log(content);
-        btnedit = document.querySelectorAll('.btnedit');
-        for(let i = 0; i < content.length; i++){
-          btnedit[i].onclick = function(){
-            $('#editmodal').modal('show');
-            $('#product_id').val(content[i].ProductId);
-            $('#product_name').val(content[i].ProductName);
-            $('#product_description').val(content[i].ProductDescription);
-            $('#product_price').val(content[i].ProductPrice);
-            $('#product_storage').val(content[i].Storage);
-            $('#category_id').val(content[i].CategoryId);
 
-
-            //show image fro database
-            var _img = document.getElementById('show_product_image');
-            var newImg = new Image;
-            newImg.onload = function()
-            {
-                _img.src = this.src;
-            }
-            newImg.src = content[i].ProductImage;
-          }
-        }
         btndelete = document.querySelectorAll('.btndelete');
         for(let i = 0; i < content.length; i++){
           btndelete[i].onclick = function(){

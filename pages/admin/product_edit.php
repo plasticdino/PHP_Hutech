@@ -1,57 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi"><?php
+  $title = "Product Add";
+  include_once("partials/header.php");
+  require_once("../../database/entities/product_class.php");
 
-<div class="modal fade" id="editmodal" tabindex="-1" role="dialog">
- <div class="modal-dialog" role="document">
-   <div class="modal-content">
-     <div class="modal-header">
-       <h5 class="modal-title">EDIT</h5>
-       <button type="button" class="close" data-dismiss="modal" >
-         <span>&times</span>
-       </button>
-     </div>
-     <form action="" method="POST"  enctype="multipart/form-data">
-       <div class="modal-body">
-           <div class="form-group">
-             <label>Product Id</label>
-             <input type="text" name="product_id" id="product_id" class="form-control" placeholder="ID" readonly="true">
-           </div>
-           <div class="form-group">
-             <label>Product Name</label>
-             <textarea type="text" name="product_name" id="product_name" class="form-control" placeholder="Product Name">
-             </textarea>
-           </div>
-           <div class="form-group">
-             <label>Product Price</label>
-             <textarea type="text" name="product_price" id="product_price" class="form-control" placeholder="Product Name">
-             </textarea>
-           </div>
-           <div class="form-group">
-             <label>Product Storage</label>
-             <textarea type="text" name="product_storage" id="product_storage" class="form-control" placeholder="Product Name">
-             </textarea>
-           </div>
-           <div class="form-group">
-             <label>Category Id</label>
-             <textarea type="text" name="category_id" id="category_id" class="form-control" placeholder="Product Name">
-             </textarea>
-           </div>
-           <div class="form-group">
-             <label>Product Description</label>
-             <textarea rows='4' type="text" name="product_description" id="product_description" class="form-control" placeholder="Product Description">
-             </textarea>
-           </div>
-           <div class="form-group">
-             <label>Product Image</label>
-             </br>
-             <img class="img-responsive py-1 img-fluid" id="show_product_image" alt="Image" src="#">
-             <input type="file" class="form-control" id="product_image" onchange="readURL(this);" name="product_image"
-              accept=".PNG, .GIF, .JPG">
-           </div>
-       </div>
-       <div class="modal-footer">
-       <button type="submit" name="edit_product" class="btn btn-secondary">EDIT</button>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-       </div>
-     </form>
-   </div>
- </div>
-</div>
+  //lấy giá trị id từ url
+  if (isset($_GET["id"]))
+  {
+    $pro_id = $_GET["id"];
+    $pro = reset(Product::get_product($pro_id));
+
+    if(isset($_POST["edit_product"])){
+      $proId = $_POST["product_id"];
+      $proName = $_POST["product_name"];
+      $proPrice = $_POST["product_price"];
+      $proDesc = $_POST["product_description"];
+      $proStorage = $_POST["product_storage"];
+      $cateId = $_POST["category_id"];
+      $getImage = $_POST["product_image"];
+      $proImage = $_FILES["product_image"];
+      $proSale = $_POST["product_sale"];
+
+      $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,'');
+
+      if ($proImage['name'] == '' || $proImage['size'] == 0)
+      {
+        $result = $newProduct->update_product(false);
+      }
+      else
+      {
+        $result = $newProduct->update_product(true);
+      }
+      if(!$result)
+      {
+        header("Location: ?failure");
+      }
+      else
+      {
+        header("Location: ?updated");
+      }
+    }
+    if(isset($_POST["delete_product"])){
+      $newProduct = new Product($pro_id,'', '', '','', '', '','');
+      $result = $newProduct->delete_product();
+
+      if(!$result)
+      {
+        header("Location:product_list.php?failure");
+      }
+      else
+      {
+        header("Location:product_list.php?deleted");
+      }
+    }
+  }
+  else
+  {
+    header ("Location: product_list.php");
+  }
+?><body>
+    <div class="container-scroller"><?php
+      include_once("partials/navbar.php");
+      ?><div class="container-fluid page-body-wrapper"><?php
+        include_once("partials/sidebar.php");
+        ?><div class="main-panel">
+          <div class="content-wrapper">
+            <div class="card">
+              <div class="card-body">
+                   <h4 class="card-title">EDIT PRODUCT</h4>
+                   <?php
+                         if(isset($_GET["updated"])){
+                           $notification = "Update category successfully !!!";
+                           include_once("partials/notify.php");
+                         }
+                        ?>
+                   <form class="forms-sample" method="post" enctype="multipart/form-data">
+                     <div class="row">
+                       <div class="col-md-6">
+
+                         <!-- ID -->
+                         <div class="form-group row">
+                           <label class="col-sm-3 col-form-label">Product Id</label>
+                           <div class="col-sm-9">
+                             <input type="text" readonly="true" class="form-control" name="product_id" value="<?php echo $pro["ProductId"]; ?>">
+                           </div>
+                         </div>
+
+                         <!-- Name -->
+                         <div class="form-group row">
+                           <label class="col-sm-3 col-form-label">Product Name</label>
+                           <div class="col-sm-9">
+                             <input name="product_name" class="form-control" value="<?php echo $pro["ProductName"]; ?>">
+                           </div>
+                         </div>
+
+                         <!-- Description -->
+                         <div class="form-group row">
+                           <label class="col-sm-3 col-form-label">Description</label>
+                           <div class="col-sm-9">
+                             <textarea name="product_description" rows="8" class="form-control"><?php echo $pro["ProductDescription"]; ?></textarea>
+                           </div>
+                         </div>
+
+                         <!-- Storage -->
+                         <div class="form-group row">
+                           <label class="col-sm-3 col-form-label">Storage</label>
+                           <div class="col-sm-9">
+                             <div class="product-details">
+                               <div class="quantity">
+                                 <div class="pro-qty">
+                                   <span class="inc qtybtn" type="button" onclick="decrease()" >-</span>
+                                   <input type="text" class="btn-quantity" id="text" value="1">
+                                   <span class="inc qtybtn" type="button" onclick="increase()" >+</span>
+                                 </div>
+                              </div>
+                             </div>
+                           </div>
+                         </div>
+
+
+                       </div>
+
+                       <div class="col-md-6">
+                         <div class="form-group row">
+                           <div class="">
+                             <label>Image review</label>
+
+                               <img src="<?php echo $pro["ProductImage"]; ?>" style="padding-bottom: 10px;" class="img-responsive cus_img" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+
+                               <input type="file" onchange="readURL(this);" name="" accept=".PNG, .GIF, .JPG">
+
+                           </div>
+                          </div>
+                         <div class="form-group row">
+                           <div class="col-sm-3">
+                             <img src="<?php echo $pro["ProductImage"]; ?>" style="padding-bottom: 10px;" class="img-responsive prod-imgs" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+<button type="button" name="button"></button>
+                           </div>
+                           <div class="col-sm-3">
+                             <div class="">
+                               <img src="..\..\media\image\product\2021010408205051+W6NcUJtL.jpg" style="padding-bottom: 10px;" class="img-responsive prod-imgs" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+                             </div>
+<button type="button" name="button"></button>
+
+                           </div>
+                           <div class="col-sm-3">
+                             <img src="..\..\media\image\product\20210104082008z2093505129688_2a3ee6c78bff038ca22b33d02dbd7feb.jpg" style="padding-bottom: 10px;" class="img-responsive prod-imgs" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+
+                           </div>
+                           <div class="col-sm-3">
+                             <img src="..\..\media\image\category\72284160_373822990230201_2131402178047246336_n.jpg" style="padding-bottom: 10px;" class="img-responsive prod-imgs" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+
+                           </div>
+                           <div class="col-sm-3">
+                             <img src="..\..\media\image\product\2021010408205051+W6NcUJtL.jpg" style="padding-bottom: 10px;" class="img-responsive prod-imgs" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+
+                           </div>
+                           <div class="col-sm-3">
+                             <img src="..\..\media\image\product\20210104082008z2093505129688_2a3ee6c78bff038ca22b33d02dbd7feb.jpg" style="padding-bottom: 10px;" class="img-responsive prod-imgs" alt="Image" id="<?php echo "show_banner_image".$i; ?>">
+
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                     <div class="form-group row button-align">
+                       <button type="update" name="" class="btn btn-primary btn-sm cus_button">UPDATE</button>
+                       <button type="delete" name="" class="btn btn-primary btn-sm cus_button">DELETE</button>
+                       <button type="cancel" name="" class="btn btn-primary btn-sm cus_button">CANCEL</button>
+                     </div>
+                    </form>
+              </div>
+            </div><?php
+             include_once("partials/footer.php");
+             include_once("product_edit.php");
+             include_once("product_delete.php");
+             ?></div>
+        </div>
+      </div>
+    </div>
+
+    <?php include_once("partials/scripts.php") ?>
+
+    <script>
+
+      //load image when user choose new files
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                  $('#show_product_image')
+                      .attr('src', e.target.result);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+
+
+      // quantity button
+      function increase()
+      {
+        var a = 1;
+        var textBox = document.getElementById("text");
+        textBox.value++;
+      }
+      function decrease()
+      {
+        if (textBox.value < 0)
+        {
+
+        }
+        else
+        {
+          var textBox = document.getElementById("text");
+          textBox.value--;
+        }
+      }
+    </script>
+  </body>
+</html>

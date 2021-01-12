@@ -1,6 +1,6 @@
 <div class="modal fade" id="quickview" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="max-height: 459px; overflow-y: auto;">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times</span>
@@ -66,7 +66,7 @@
                                 </div>
                             </div> -->
                             <div class="quickview-stock">
-                                <h6 id="s_product_storage"><i class="fa fa-check-circle-o"></i></h6>
+                                <h6 id="s_product_storage" class="fa fa-check-circle-o"></h6>
                             </div>
                         </div>
                         <h3></h3>

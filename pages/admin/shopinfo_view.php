@@ -28,7 +28,7 @@
            <div class="form-group row">
              <div class="col-md-9">
              </div>
-             <div class="col-md-3">
+             <div class="col-md-3 button-align">
                <button type="save" name="save_info" class="btn btn-primary btn-sm">SAVE</button>
              </div>
            </div>

@@ -1,9 +1,5 @@
 <?php foreach ($cates as $c_item) {
   $prods = Product::list_product_by_cateid($c_item["CategoryId"]);
-  foreach ($prods as $item )
-  {
-    echo $item["ProductId"];
-  }
   $quick_prods = array_merge($quick_prods, $prods);
 
  ?>
@@ -45,7 +41,9 @@
                                 </a>
                               </li> -->
                               <li class="w-icon active">
-                                <a href="#quickview" class="quickview" data-toggle="modal" data-id="<?php echo $item["ProductId"]; ?>">
+                                <a href="#quickview"
+                                onclick="clickProduct('<?php echo $p_item["ProductId"]; ?>','<?php echo $c_item["CategoryName"]; ?>')"
+                                 class="quickview" data-toggle="modal">
                                   <i class="icon_zoom-in_alt" ></i>
                                 </a>
                               </li>
@@ -55,7 +53,6 @@
                             <div class="catagory-name"><?php echo $c_item["CategoryName"]; ?></div>
                             <a href="#">
                                 <h5><?php echo $p_item["ProductName"]; ?></h5>
-                                <?php echo $p_item["ProductId"]; ?>
                             </a>
                             <div class="product-price">
                                   <?php

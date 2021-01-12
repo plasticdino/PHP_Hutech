@@ -26,7 +26,7 @@
         <div class="form-group row">
           <div class="col-md-9">
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 button-align">
             <button type="update" name="<?php echo "update_social".$i; ?>" class="btn btn-primary btn-sm">UPDATE</button>
           </div>
         </div>

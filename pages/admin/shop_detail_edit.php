@@ -172,25 +172,17 @@
         <!-- End custom js for this page-->
         <script>
             //load image when user choose new files
-            var n = <?php echo json_encode($n_banner); ?>
-            var selected_name = '';
-
+            var n = <?php echo json_encode($n_banner); ?>;
             console.log(n);
 
-            btnupdate = document.querySelectorAll('.banner_image');
-            for(let i = 1; i <= n; i++){
-              btnedit[i].onclick = function(){
-                selected_name = 'show_banner_image'+i;
-              }
-            }
-            function readURL(input) {
-                console.log(selected_name);
+            function readURL(input, i) {
+
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                        $('selected_name')
-                            .attr('src', e.target.result);
+                        $('#show_banner_image'+i)
+                        .attr('src', e.target.result);
                     };
 
                     reader.readAsDataURL(input.files[0]);

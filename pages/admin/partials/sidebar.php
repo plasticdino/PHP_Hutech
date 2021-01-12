@@ -59,19 +59,6 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#promo" aria-expanded="false" aria-controls="auth">
-              <i class="mdi mdi-star menu-icon"></i>
-              <span class="menu-title">Promotion</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="promo">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> Show promotion list </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> Add new promotion</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#order" aria-expanded="false" aria-controls="auth">
               <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
               <span class="menu-title">Order</span>

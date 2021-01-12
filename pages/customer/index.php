@@ -382,50 +382,42 @@
     <!-- Js Plugins -->
     <script>
 
+    var content = new Array();
+    content =<?php echo json_encode($quick_prods); ?>;
+    console.log(content);
+
+
     ///show pop up quickview
-    $(document).ready(function (){
-      var cate_list = new Array();
-      cate_list = <?php echo json_encode($cates); ?>;
+    function clickProduct(id, catename){
+    console.log(id);
+    console.log(catename);
+    for (let i = 0; i < content.length; i++)
+    {
+      if (content[i].ProductId == id)
+      {
 
-      var content = new Array();
-      content =<?php echo json_encode($quick_prods); ?>;
-      console.log(content.slice(0,2));
+        document.getElementById('s_product_name').innerHTML = content[i].ProductName;;
+        document.getElementById('s_product_description').innerHTML = content[i].ProductDescription;
+        document.getElementById('s_product_storage').innerHTML = content[i].Storage + " in stock";
+        document.getElementById('s_product_price').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
 
-      btn_quickview = document.querySelectorAll('.quickview');
-      for(let i = 0; i < content.length; i++){
-          //console.log(idProduct)
-        btn_quickview[i].onclick = function(){
-          // console.log(content[i]);
-          idProduct = content[i].ProductId;
-          console.log(idProduct);
-          // if(idProduct == content[i].ProductId){
-          //
-          // }
-          document.getElementById('s_product_name').innerHTML = idProduct;
-          document.getElementById('s_product_description').innerHTML = content[i].ProductDescription;
-          document.getElementById('s_product_storage').innerHTML = content[i].Storage + " in stock";
-          document.getElementById('s_product_price').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
+        ///get category name
+        document.getElementById('s_product_cateid').innerHTML = catename;
 
-          for(let j = 0; j < cate_list.length; j++){
-            if (content[i].CategoryId == cate_list[j].CategoryId)
-            {
-              document.getElementById('s_product_cateid').innerHTML = cate_list[j].CategoryName;
-              break;
-            }
 
-          }
-
-          //show image fro database
-          var _img = document.getElementById('show_s_product_image');
-          var newImg = new Image;
-          newImg.onload = function()
-          {
-              _img.src = this.src;
-          }
-          newImg.src = content[i].ProductImage;
+        //show image fro database
+        var _img = document.getElementById('show_s_product_image');
+        var newImg = new Image;
+        newImg.onload = function()
+        {
+            _img.src = this.src;
         }
+        newImg.src = content[i].ProductImage;
+        break;
       }
-    });
+    }
+
+  }
     </script>
   </body>
 </html>
