@@ -28,12 +28,12 @@
           <div class="content-wrapper">
             <div class="card">
               <div class="card-body"><?php
-                    if(isset($_GET["updated"])){
-                      $notification = "Update category successfully !!!";
+                    if(isset($_GET["not_found"])){
+                      $notification = "This item is cursed !!!";
                       include_once("partials/notify.php");
                     }
                     else if(isset($_GET["deleted"])){
-                      $notification = "Delete category successfully !!!";
+                      $notification = "Delete product successfully !!!";
                       include_once("partials/notify.php");
                     }
                    ?><h4 class="card-title">Product List</h4>

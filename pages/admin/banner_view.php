@@ -53,11 +53,13 @@
                  <?php
                } else {
                   ?>
-                  <img src="<?php echo $item["BannerImage"]; ?>" style="padding-bottom: 10px;" class="img-responsive cus_img" alt="Image" id="show_banner_image<?php echo $i; ?>">
+                  <img src="<?php echo $item["BannerImage"]; ?>" style="padding-bottom: 10px;"
+                  class="img-responsive cus_img" alt="Image" id="show_banner_image<?php echo $i; ?>">
                   <?php
                 }
                    ?>
-                  <input type="file" onchange="readURL(this, '<?php echo $i; ?>');" name="<?php echo "banner_image".$i; ?>" accept=".PNG, .GIF, .JPG">
+                  <input type="file" onchange="readURL(this, '<?php echo $i; ?>');" 
+                  name="<?php echo "banner_image".$i; ?>" accept=".PNG, .GIF, .JPG">
               </div>
             </div>
           </div>

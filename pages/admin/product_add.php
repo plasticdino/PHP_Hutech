@@ -16,7 +16,7 @@
     $cateId = $_POST["txtCateID"];
     $proImage = $_FILES["txtProImage"];
 
-    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,'');
+    $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,$proSale);
 
     $id_exist = $newProduct->id_exist();
     if (!$id_exist)
@@ -152,7 +152,7 @@
                   </div>
 
                   <button type="submit" class="btn btn-primary mr-2" name="btnsubmit">SAVE</button>
-                  <button class="btn btn-light"onclick="location.href='index.php'">CANCEL</button>
+                  <button class="btn btn-light" onclick="location.href='index.php'">CANCEL</button>
                 </form>
               </div>
             </div><?php

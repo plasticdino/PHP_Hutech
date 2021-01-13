@@ -6,29 +6,37 @@ class Image{
   public $link;
   public $proid;
 
-public function __construct ($link, $proid)
-{
-  $this->link = $link;
-  $this->proid = $proid;
-}
+  public function __construct ($link, $proid)
+  {
+    $this->link = $link;
+    $this->proid = $proid;
+  }
 
-public function insert_image(){
+  public function insert_image(){
 
-  $db = new Db();
-  $sql = "INSERT INTO Image (ImageLink, ProductId) VALUES
-  ('$this->link', '$this->proid')";
+    $db = new Db();
+    $sql = "INSERT INTO Image (ImageLink, ProductId) VALUES
+    ('$this->link', '$this->proid')";
 
-  $result = $db->query_execute($sql);
-  return $result;
-}
+    $result = $db->query_execute($sql);
+    return $result;
+  }
 
 // delete imagearc
-public function delete_image($id)
-{
-  $db = new Db();
-  $sql = "DELETE from Image where ImageId = '$id'" ;
-  $result =  $db->query_execute($sql);
-  return $result;
-}
+  public function delete_image($id)
+  {
+    $db = new Db();
+    $sql = "DELETE from Image where ImageId = '$id'" ;
+    $result =  $db->query_execute($sql);
+    return $result;
+  }
+
+  //lấy list
+  public function list_image($proid){
+    $db = new Db();
+    $sql = "SELECT * FROM Image WHERE ProductId = '$proid'";
+    $result = $db->query_execute($sql);
+    return $result;
+  }
 }
  ?>

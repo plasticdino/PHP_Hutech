@@ -34,8 +34,8 @@ class Product{
     }
 
     $db = new Db();
-    $sql = "INSERT INTO Product (ProductId, ProductName,ProductPrice, ProductDescription, Storage, CategoryId, ProductImage) VALUES
-    ('$this->id','$this->name','$this->price','$this->desc', '$this->storage','$this->cateid', '$filepath')";
+    $sql = "INSERT INTO Product (ProductId, ProductName,ProductPrice, ProductDescription, Storage, CategoryId, ProductImage, SalePrice) VALUES
+    ('$this->id','$this->name','$this->price','$this->desc', '$this->storage','$this->cateid', '$filepath', '$this->sale')";
 
     $result = $db->query_execute($sql);
     return $result;
