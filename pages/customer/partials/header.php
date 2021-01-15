@@ -19,4 +19,6 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+
+    <link rel="shortcut icon" href="..\..\media\image\shop\logo\banner.png" />
 </head>

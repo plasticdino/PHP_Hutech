@@ -2,9 +2,10 @@
     <div class="container-fluid">
         <div class="row">
           <?php foreach ($cates as $item) { ?>
-            <div class="col-lg-4">
+            <div class="col-lg-4"  onclick="location.href='shop.php?cateid=<?php echo $item["CategoryId"]; ?>'">
                 <div class="single-banner">
-                    <img src="<?php echo $item["CategoryImage"]; ?>" style="height:200px; width:auto;" alt="">
+                    <img src="<?php echo $item["CategoryImage"]; ?>"
+                    style="height:200px; width:auto;" alt="">
                     <div class="inner-text">
                         <h4><?php echo $item["CategoryName"]; ?></h4>
                     </div>

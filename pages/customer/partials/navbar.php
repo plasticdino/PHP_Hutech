@@ -3,7 +3,7 @@ require_once("../../database/entities/product_class.php");
 require_once("../../database/entities/category_class.php");
 
   $cates = Category::list_category();
-  $prods = Product::list_product();
+
 ?>
 <!-- <div id="preloder">
     <div class="loader"></div>
@@ -15,8 +15,9 @@ require_once("../../database/entities/category_class.php");
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                        <a href="index.php">
+                            <img src="..\..\media\image\shop\logo\banner.png" style="width:30px; height:30px;"alt="">
+                             ARY STATION
                         </a>
                     </div>
                 </div>
@@ -25,7 +26,9 @@ require_once("../../database/entities/category_class.php");
                         <select class="category-btn"  onchange="location = this.value;">
 									<option selected="selected">All Category</option>
                   <?php foreach($cates as $item) {
-                    echo "<option value=shop.php?cateid=".$item["CategoryId"].">".$item["CategoryName"]."</option>";
+                    echo "<option value=shop.php?cateid=".$item["CategoryId"].">".$item["CategoryName"].
+                    "<a href='shop.php?cateid='".$item["CategoryId"]."></a>
+                    </option>";
                   } ?>
 
 								</select>
@@ -99,7 +102,7 @@ require_once("../../database/entities/category_class.php");
         <div class="container ">
             <nav class="nav-menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="shop.php">Shop</a>
                       <ul class="dropdown">
                         <?php foreach($cates as $item) { ?>

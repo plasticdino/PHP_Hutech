@@ -105,10 +105,10 @@ class Product{
   }
 
   //lấy thông tin các sản phẩm liên quan
-  public function list_product_relate($cateid)
+  public function list_product_relate($cateid, $id)
   {
     $db = new Db();
-    $sql = "SELECT * FROM product WHERE CategoryId='$cateid' AND ProductId!='$this->id'";
+    $sql = "SELECT * FROM product WHERE CategoryId='$cateid' AND ProductId!='$id'";
     $result = $db->select_to_array($sql);
     return $result;
   }
@@ -119,6 +119,11 @@ class Product{
     $sql = "SELECT * FROM Product WHERE ProductId = '$pro_id'";
     $result = $db->select_to_array($sql);
     return $result ;
+  }
+
+  public function search_product($key)
+  {
+    
   }
 
 }

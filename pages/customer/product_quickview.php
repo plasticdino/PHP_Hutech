@@ -1,74 +1,44 @@
-<div class="modal fade" id="quickview" tabindex="-1" role="dialog">
+<div class="modal fade" id="quickview" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
+                <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal">
                     <span>&times</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6 product_img">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            <ul class="carousel-indicators">
-                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#myCarousel" data-slide-to="1"></li>
-                                <li data-target="#myCarousel" data-slide-to="2"></li>
-                            </ul>
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                  <div class="parent d-flex justify-content-center">
-                                      <img id="show_s_product_image" alt="Product Image" />
-                                  </div>
-                              </div>
 
-                                <div class="carousel-item">
-                                    <div class="parent d-flex justify-content-center">
-                                        <img src="..\..\media\image\product\20210104082008z2093505129688_2a3ee6c78bff038ca22b33d02dbd7feb.jpg" alt="Second slide" />
-                                    </div>
-                                </div>
+                        <!--  SIDE IMAGE SLIDE-->
+                      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <ul class="carousel-indicators">
 
-                                <div class="carousel-item">
-                                    <div class="parent d-flex justify-content-center">
-                                        <img src="..\..\media\image\product\2021010408205051+W6NcUJtL.jpg" alt="Second slide" />
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="parent d-flex justify-content-center">
-                                        <img src="..\..\media\image\category\72284160_373822990230201_2131402178047246336_n.jpg" alt="Second slide" />
-                                    </div>
-                                </div>
-                            </div>
+                        </ul>
+                        <div class="carousel-inner">
 
-                            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-
-                            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
                         </div>
+
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                      </div>
                     </div>
+
+                    <!-- PRODUCT CONTENT -->
                     <div class="col-md-6 product_content">
                         <h4 id="s_product_name"></h4>
                         <div class="quickview-ratting-review">
-
-                            <!-- rating view -->
-                            <!-- <div class="quickview-ratting-wrap">
-                                <div class="quickview-ratting">
-                                    <i class="yellow fa fa-star"></i>
-                                    <i class="yellow fa fa-star"></i>
-                                    <i class="yellow fa fa-star"></i>
-                                    <i class="yellow fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div> -->
                             <div class="quickview-stock">
                                 <h6 id="s_product_storage" class="fa fa-check-circle-o"></h6>
                             </div>
                         </div>
+
                         <h3></h3>
                         <span></span>
                         <div class="product-details">
@@ -76,8 +46,9 @@
                               <div class="catagory-name">
                                 <h5 id="s_product_cateid"></h5></div>
                               <div class="product-price">
-                                <h4 id="s_product_price"></h4>
-                                  <span></span>
+                                <h4 style=" color: #e7ab3c; font-size: 20px;
+                                font-weight: 700;" id="s_product_price"></h4>
+                                Original Price: <h6 id="s_product_sale"></h6>
                               </div>
                           </div>
                         </div>
@@ -96,8 +67,10 @@
                             </div>
                             <!-- end col -->
                         </div>
-                        <a href="#" class="primary-btn">Add to cart</a>
-                        <!-- <a href="#" class="btn min"><i class="ti-heart"></i></a> -->
+                        <div class="quick-button">
+                          <a class="primary-btn">ADD TO CART</a>
+                        </div>
+
                     </div>
                 </div>
             </div>

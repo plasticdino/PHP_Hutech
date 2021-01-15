@@ -15,7 +15,7 @@
     $list = Product::get_product($pro_id);
     $pro = reset($list);
 
-    $mul_img = Image::list_image($pro_id);
+    $mul_img = Image::list_image_by_pro($pro_id);
 
     //khi nút update được kích hoạt
     if(isset($_POST["btnupdate"]))

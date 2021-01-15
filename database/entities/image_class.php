@@ -32,10 +32,17 @@ class Image{
   }
 
   //lấy list
-  public function list_image($proid){
+  public function list_image_by_pro($proid){
     $db = new Db();
     $sql = "SELECT * FROM Image WHERE ProductId = '$proid'";
-    $result = $db->query_execute($sql);
+    $result = $db->select_to_array($sql);
+    return $result;
+  }
+
+  public function list_image(){
+    $db = new Db();
+    $sql = "SELECT * FROM Image ";
+    $result = $db->select_to_array($sql);
     return $result;
   }
 }

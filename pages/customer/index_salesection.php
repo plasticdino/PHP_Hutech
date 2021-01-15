@@ -9,7 +9,7 @@
             <div class="col-lg-3">
                 <div class="product-large set-bg" data-setbg="<?php echo $c_item["CategoryImage"]; ?>">
                     <h2></h2>
-                    <a href="#">Discover More</a>
+                    <a href='shop.php?cateid=<?php echo $c_item["CategoryId"]; ?>'>Discover More</a>
                 </div>
             </div>
             <div class="col-lg-8 offset-lg-1">
@@ -24,7 +24,7 @@
                     <form method="post">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="<?php echo $p_item["ProductImage"]; ?>" alt="<?php echo $p_item["ProductName"]; ?>">
+                            <img onclick="location.href='product_detail.php?proid=<?php echo $p_item["ProductId"]; ?>'" src="<?php echo $p_item["ProductImage"]; ?>" alt="<?php echo $p_item["ProductName"]; ?>">
                             <?php
                             if ($p_item["SalePrice"] != 0)
                             { echo "<div class='sale'>Sale</div>"; }
