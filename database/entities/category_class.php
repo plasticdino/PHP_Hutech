@@ -28,7 +28,6 @@ class Category{
     $db = new Db();
     $sql = "INSERT INTO Category (CategoryId, CategoryName, CategoryImage, CategoryDescription) VALUES
     ('$this->id','$this->name','$filepath','$this->desc')";
-
     $result = $db->query_execute($sql);
     return $result;
   }

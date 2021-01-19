@@ -8,7 +8,6 @@
   require_once("../../database/entities/product_class.php");
   require_once("../../database/entities/image_class.php");
 
-
   $cates = Category::list_category();
   $banner = Banner::list_banner();
   $quick_prods = [];
@@ -64,7 +63,7 @@
         document.getElementById('s_product_description').innerHTML = content[i].ProductDescription;
         document.getElementById('s_product_storage').innerHTML = " " + content[i].Storage + " in stock";
         document.getElementById('s_product_price').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
-        if (content[i].SalePrice == null)
+        if ((content[i].SalePrice == null) || (content[i].SalePrice == 0))
         {
           document.getElementById('s_product_sale').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
         }
@@ -97,6 +96,8 @@
         });
 
         $('<a href="product_detail.php?proid='+ proid +'" class="primary-btn">check detail</a> ')
+        .appendTo('.quick-button');
+        $('<a href="shopping-cart.php?productid='+ proid +'" class="primary-btn">Add to cart</a> ')
         .appendTo('.quick-button');
 
         break;

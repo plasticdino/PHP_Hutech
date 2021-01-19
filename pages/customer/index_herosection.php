@@ -7,7 +7,6 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <span></span>
-                        <h1>BACK TO SCHOOL</h1>
                         <p><?php echo $item["BannerContent"]; ?></p>
                         <a href="shop.php" class="primary-btn">Shop Now</a>
                     </div>

@@ -47,8 +47,9 @@
                                 <h5 id="s_product_cateid"></h5></div>
                               <div class="product-price">
                                 <h4 style=" color: #e7ab3c; font-size: 20px;
-                                font-weight: 700;" id="s_product_price"></h4>
-                                Original Price: <h6 id="s_product_sale"></h6>
+                                font-weight: 700;" id="s_product_sale"></h4>
+                                Original Price: <h6 id="s_product_price"></h6>
+                                
                               </div>
                           </div>
                         </div>
@@ -68,7 +69,6 @@
                             <!-- end col -->
                         </div>
                         <div class="quick-button">
-                          <a class="primary-btn">ADD TO CART</a>
                         </div>
 
                     </div>

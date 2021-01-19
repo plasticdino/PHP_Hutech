@@ -1,7 +1,6 @@
 <?php
 require_once("../../database/entities/product_class.php");
 require_once("../../database/entities/category_class.php");
-
   $cates = Category::list_category();
 
 ?>
@@ -41,9 +40,26 @@ require_once("../../database/entities/category_class.php");
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
                         <li class="cart-icon">
-                          <a href="#" class="login-panel">
+                          <a href=".\login.php" class="login-panel">
+                            <?php 
+                                if(isset($_SESSION["username"])){
+                                    echo $_SESSION["username"];
+                                }else{
+                                    echo 'Login';
+                                }
+                            ?>
                             <i class="fa fa-user"></i>
                           </a>
+                          <?php 
+                                if(isset($_SESSION["username"])){
+                                    echo '<ul class="dropdown">';
+                                    if ((isset($_SESSION['role'])) && ($_SESSION['role'] == 1)){
+                                        echo "<li><a href='../admin/index.php'>Manage</a></li>";
+                                    }
+                                        echo '<li><a href="logout.php">Log Out</a></li>';
+                                    echo '</ul>';
+                                }
+                            ?>
                         </li>
                         <li class="cart-icon">
                             <a href="#">
@@ -86,7 +102,7 @@ require_once("../../database/entities/category_class.php");
                                     <h5>$120.00</h5>
                                 </div>
                                 <div class="select-button">
-                                    <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                    <a href="./shopping-cart.php" class="primary-btn view-card">VIEW CARD</a>
                                     <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
@@ -120,16 +136,6 @@ require_once("../../database/entities/category_class.php");
                           <li><a href="shipping_detail">Shipping Detail</a></li>
                           <li><a href="">Team Information</a></li>
                       </ul>
-                    </li>
-                    <li><a href="#">Account</a>
-                        <ul class="dropdown">
-                            <li><a href="./shopping-cart.html">Product you've liked</a></li>
-                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="./check-out.html">Checkout</a></li>
-                            <li><a href="./register.html">Register</a></li>
-                            <li><a href="./login.html">Login</a></li>
-                            <li><a href="./login.html">Logout</a></li>
-                        </ul>
                     </li>
                 </ul>
             </nav>

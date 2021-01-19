@@ -31,7 +31,7 @@
                               ?>
                             <ul>
                               <li class="w-icon active">
-                                <a href="#">
+                                <a href="shopping-cart.php?productid=<?php echo$p_item["ProductId"]; ?>">
                                   <i class="icon_bag_alt"></i>
                                 </a>
                               </li>

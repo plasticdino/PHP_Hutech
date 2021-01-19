@@ -17,7 +17,6 @@ class Image{
     $db = new Db();
     $sql = "INSERT INTO Image (ImageLink, ProductId) VALUES
     ('$this->link', '$this->proid')";
-
     $result = $db->query_execute($sql);
     return $result;
   }
@@ -39,7 +38,7 @@ class Image{
     return $result;
   }
 
-  public function list_image(){
+  public static function list_image(){
     $db = new Db();
     $sql = "SELECT * FROM Image ";
     $result = $db->select_to_array($sql);

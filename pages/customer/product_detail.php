@@ -16,7 +16,7 @@
   {
     $proid = $_GET["proid"];
     $list = Product::get_product($proid);
-    $prod = reset($list);
+    $prod = $list;
     $prods_relate = Product::list_product_relate($prod["CategoryId"], $proid);
     $pro_img = Image::list_image_by_pro($proid);
 
@@ -132,7 +132,7 @@
                                 </div>
                                 <!-- end col -->
                             </div>
-                            <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                            <a href="shopping-cart.php?productid=<?php echo$prod["ProductId"]; ?>" class="primary-btn pd-cart">Add To Cart</a>
                         </div>
                     </div>
                 </div>

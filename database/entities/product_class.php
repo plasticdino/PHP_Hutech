@@ -36,12 +36,13 @@ class Product{
     $db = new Db();
     $sql = "INSERT INTO Product (ProductId, ProductName,ProductPrice, ProductDescription, Storage, CategoryId, ProductImage, SalePrice) VALUES
     ('$this->id','$this->name','$this->price','$this->desc', '$this->storage','$this->cateid', '$filepath', '$this->sale')";
-
+    // print_r($sql);
+    // exit(0);
     $result = $db->query_execute($sql);
     return $result;
   }
 
-  public function list_product()
+  public static function list_product()
   {
     $db = new Db();
     $sql = "SELECT * FROM Product";
@@ -68,14 +69,14 @@ class Product{
       {
         return false;
       }
-      $sql = "UPDATE Product SET ProductName = '$this->name', ProductPrice = '$this->price',
+      $sql = "UPDATE Product SET ProductName = '$this->name', ProductPrice = '$this->price', SalePrice ='$this->sale',
         ProductDescription='$this->desc', Storage = '$this->storage', CategoryId = '$this->cateid', ProductImage = '$filepath'
         where ProductId = '$this->id'";
     }
     else
     {
       $sql = "UPDATE Product SET ProductName = '$this->name', ProductPrice = '$this->price',
-        ProductDescription='$this->desc', Storage = '$this->storage', CategoryId = '$this->cateid'
+        ProductDescription='$this->desc', Storage = '$this->storage', CategoryId = '$this->cateid', SalePrice ='$this->sale'
         where ProductId = '$this->id'";
     }
     $db = new Db();
@@ -96,7 +97,7 @@ class Product{
   }
 
 
-  public function list_product_by_cateid($cateid)
+  public static function list_product_by_cateid($cateid)
   {
     $db = new Db();
     $sql = "SELECT * FROM product WHERE CategoryId = '$cateid'";
@@ -114,11 +115,11 @@ class Product{
   }
 
   ///lấy thông tin sản phẩm
-  public function get_product($pro_id){
+  public static function get_product($pro_id){
     $db = new Db();
     $sql = "SELECT * FROM Product WHERE ProductId = '$pro_id'";
     $result = $db->select_to_array($sql);
-    return $result ;
+    return $result[0] ;
   }
 
   public function search_product($key)

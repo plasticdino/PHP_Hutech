@@ -13,7 +13,7 @@
     //lấy ra sản phẩm từ id
     $pro_id = $_GET["id"];
     $list = Product::get_product($pro_id);
-    $pro = reset($list);
+    $pro = $list;
 
     $mul_img = Image::list_image_by_pro($pro_id);
 
