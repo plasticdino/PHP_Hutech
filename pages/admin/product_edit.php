@@ -99,7 +99,7 @@
             $file_name = $_FILES['files']['name'][$key];
             // Set upload file path
             $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
-            $filepath = "../../media/image/shop/".$timestamp.$file_name;
+            $filepath = "../../media/image/sideimage/".$timestamp.$file_name;
             if( move_uploaded_file($file_tmpname, $filepath)) {
                 $newImage = new Image($filepath,$pro_id);
                 $result_upload = $newImage->insert_image();
