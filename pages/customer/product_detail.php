@@ -16,12 +16,11 @@
   {
     $proid = $_GET["proid"];
     $list = Product::get_product($proid);
-    $prod = $list;
-    $prods_relate = Product::list_product_relate($prod["CategoryId"], $proid);
+    $prods_relate = Product::list_product_relate($list["CategoryId"], $proid);
     $pro_img = Image::list_image_by_pro($proid);
 
     foreach ($cates as $c_loop) {
-      if ($c_loop["CategoryId"] == $prod["CategoryId"])
+      if ($c_loop["CategoryId"] == $list["CategoryId"])
       {
         $c_item = $c_loop;
         break;
@@ -33,7 +32,6 @@
   {
     header ("Location: product_list.php?not_found");
   }
-
 ?>
 <body>
 
@@ -48,14 +46,14 @@
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="product-pic-zoom" style="position: relative; overflow: hidden;">
-                            <img class="product-big-img" src="<?php echo $prod["ProductImage"]; ?>" alt="" />
+                            <img class="product-big-img" src="<?php echo $list["ProductImage"]; ?>" alt="" />
                             <div class="zoom-icon">
                                 <i class="fa fa-search-plus"></i>
                             </div>
                             <img
                                 role="presentation"
                                 alt=""
-                                src="<?php echo $prod["ProductImage"]; ?>"
+                                src="<?php echo $list["ProductImage"]; ?>"
                                 class="zoomImg"
                                 style="position: absolute; top: -34.2569px; left: -15.2778px; opacity: 0; border: none; max-width: none; max-height: none; width: 440px; height: 520px;"
                             />
@@ -66,7 +64,7 @@
                                 <div class="owl-stage-outer">
                                     <div class="owl-stage" style="transform: translate3d(-139px, 0px, 0px); transition: all 1.2s ease 0s; width: 559px;">
                                         <div class="owl-item" style="width: 129.583px; margin-right: 10px;">
-                                            <div class="pt" data-imgbigurl="<?php echo $prod["ProductImage"]; ?>"><img src="<?php echo $prod["ProductImage"]; ?>" alt="" /></div>
+                                            <div class="pt" data-imgbigurl="<?php echo $list["ProductImage"]; ?>"><img src="<?php echo $list["ProductImage"]; ?>" alt="" /></div>
                                         </div>
                                         <?php foreach ($pro_img as $img_p) { ?>
                                         <div class="owl-item active" style="width: 129.583px; margin-right: 10px;">
@@ -87,25 +85,25 @@
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <h3><?php echo $prod["ProductName"]; ?></h3>
+                                    <h3><?php echo $list["ProductName"]; ?></h3>
                                 </div>
                             </div>
                             <div class="quickview-ratting-review">
                                 <div class="quickview-stock">
-                                    <h6 class="fa fa-check-circle-o"> <?php echo $prod["Storage"]; ?> in stock </h6>
+                                    <h6 class="fa fa-check-circle-o"> <?php echo $list["Storage"]; ?> in stock </h6>
                                 </div>
                             </div>
                             <div class="product-details">
                               <div class="pd-desc">
                                 <h4> <?php
-                                if ($prod["SalePrice"]!=null)
+                                if (($list["SalePrice"] != 0))
                                 {
-                                    echo  number_format($prod["SalePrice"])." VNĐ";
-                                    echo "</br><span>".number_format($prod['ProductPrice'])."VNĐ</span>";
+                                    echo number_format($list["SalePrice"])." VNĐ";
+                                    echo "</br><span>".number_format($list['ProductPrice'])."VNĐ</span>";
                                 }
                                 else
                                 {
-                                  echo number_format($prod["ProductPrice"])." VNĐ";
+                                  echo number_format($list["ProductPrice"])." VNĐ";
                                 } ?>
                               </h4>
 
@@ -113,7 +111,7 @@
                               </div>
                             </div>
                             <div class="product-details">
-                              <p><?php echo $prod["ProductDescription"]; ?></p>
+                              <p><?php echo $list["ProductDescription"]; ?></p>
                             </div>
                             <div class="product-details">
                               <ul class="pd-tags">
@@ -132,7 +130,7 @@
                                 </div>
                                 <!-- end col -->
                             </div>
-                            <a href="shopping-cart.php?productid=<?php echo$prod["ProductId"]; ?>" class="primary-btn pd-cart">Add To Cart</a>
+                            <a href="shopping-cart.php?productid=<?php echo $list["ProductId"]; ?>" class="primary-btn pd-cart">Add To Cart</a>
                         </div>
                     </div>
                 </div>
@@ -176,7 +174,7 @@
         document.getElementById('s_product_description').innerHTML = content[i].ProductDescription;
         document.getElementById('s_product_storage').innerHTML = " " + content[i].Storage + " in stock";
         document.getElementById('s_product_price').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
-        if (content[i].SalePrice == null)
+        if ((content[i].SalePrice == null) || (content[i].SalePrice == 0))
         {
           document.getElementById('s_product_sale').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
         }
