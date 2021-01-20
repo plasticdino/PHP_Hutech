@@ -2,6 +2,9 @@
     <div class="filter-widget">
         <h4 class="fw-title">Categories</h4>
         <ul class="filter-catagories">
+            <li>
+                <a href="shop.php">All</a>
+            </li>
           <?php foreach($cates as $item) { ?>
             <li>
               <a href="shop.php?cateid=<?php echo $item["CategoryId"]; ?>"><?php echo $item["CategoryName"]; ?></a>

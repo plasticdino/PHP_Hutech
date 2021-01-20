@@ -2,6 +2,11 @@
     <div class="loader"></div>
 </div> -->
 <!-- Header Section Begin -->
+<?php 
+    if (isset($_GET["btn-search"]) && !empty($_GET["search"])){
+        header("Location: shop.php?search=".$_GET["search"]);
+    }
+?>
 <header class="header-section">
     <div class="container">
         <div class="inner-header">
@@ -25,10 +30,14 @@
                   } ?>
 
 								</select>
-                        <div class="input-group">
-                            <input type="text" placeholder="What do you need?">
-                            <button type="button"><i class="ti-search"></i></button>
-                        </div>
+                        
+                            <div class="input-group">
+                            <form method="get">
+                                <input type="text" name="search" placeholder="What do you need?">
+                                <button type="button" name="btn-search"><i class="ti-search"></i></button>
+                                </form>
+                            </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-3 text-right col-md-3">

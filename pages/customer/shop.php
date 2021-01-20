@@ -9,7 +9,7 @@
   require_once("../../database/entities/image_class.php");
 
 
-  if (!isset($_GET["cateid"])){
+  if (!isset($_GET["cateid"]) ){
       $prods = Product::list_product();
     }
   else {
