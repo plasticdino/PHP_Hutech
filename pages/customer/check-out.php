@@ -6,9 +6,13 @@
     include_once("partials/header.php");
     include_once("partials/navbar.php");
     if (isset($_SESSION)){
+        $userid = $_SESSION["userid"];
         $address = $_SESSION["address"];
         $phone = $_SESSION["phone"];
         $email = $_SESSION["email"];
+    }
+    if (isset($_POST["btn-order"])){
+        $new_order 
     }
     
 ?>
@@ -31,7 +35,7 @@
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            <form method="post" class="checkout-form">
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- <div class="checkout-content">
@@ -41,7 +45,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="txtname">Name<span>*</span></label>
-                                <input type="text" id="txtname">
+                                <input type="text" name="name" id="txtname">
                             </div>
                             <div class="col-lg-12">
                                 <label for="txtaddress">Address<span>*</span></label>
@@ -109,7 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
+                                    <button type="submit" name="btn-order" class="site-btn place-btn">Place Order</button>
                                 </div>
                             </div>
                         </div>

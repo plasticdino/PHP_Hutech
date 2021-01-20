@@ -14,4 +14,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="..\..\media\image\shop\logo\banner.png" />
+  <?php
+        if (!isset($_SESSION)){
+            session_start();
+        }
+    ?>
 </head>
