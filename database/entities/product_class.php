@@ -36,8 +36,7 @@ class Product{
     $db = new Db();
     $sql = "INSERT INTO Product (ProductId, ProductName,ProductPrice, ProductDescription, Storage, CategoryId, ProductImage, SalePrice) VALUES
     ('$this->id','$this->name','$this->price','$this->desc', '$this->storage','$this->cateid', '$filepath', '$this->sale')";
-    // print_r($sql);
-    // exit(0);
+
     $result = $db->query_execute($sql);
     return $result;
   }
@@ -87,13 +86,13 @@ class Product{
   {
     $db = new Db();
     $sql = "SELECT ProductId FROM Product WHERE ProductId='$this->id'";
-    $result = $db->query_execute($sql);
+    $result = $db->select_to_array($sql);
 
     if (!empty($result))
     {
-      return true;
+      return true; //có tồn tại id này rồi
     }
-    return false;
+    return false; //chưa tồn tại id
   }
 
 
@@ -124,7 +123,7 @@ class Product{
 
   public function search_product($key)
   {
-    
+
   }
 
 }

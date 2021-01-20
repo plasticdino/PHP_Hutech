@@ -2,11 +2,6 @@
 <html lang="vi"><?php
   $title = "Product Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/product_class.php");
-  require_once("../../database/entities/category_class.php");
-  require_once("../../database/entities/image_class.php");
-
-  $cates = Category::list_category();
   //lấy giá trị id từ url
   if (isset($_GET["id"]))
   {

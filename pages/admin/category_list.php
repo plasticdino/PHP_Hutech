@@ -2,8 +2,6 @@
 <html lang="vi"><?php
   $title = "Category Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/category_class.php");
-  $cates = Category::list_category();
 
   if(isset($_POST["update_category"])){
     $cateId = $_POST["category_id"];

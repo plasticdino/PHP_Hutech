@@ -2,9 +2,6 @@
 <html lang="vi"><?php
   $title = "Product Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/product_class.php");
-  require_once("../../database/entities/category_class.php");
-  require_once("../../database/entities/image_class.php");
 
   if(isset($_POST["btnsubmit"])){
     $proId = $_POST["txtProId"];
@@ -19,7 +16,7 @@
     $newProduct = new Product ($proId, $proName, $proPrice, $proDesc, $proStorage,$cateId, $proImage,$proSale);
 
     $id_exist = $newProduct->id_exist();
-    if (!$id_exist)
+    if ($id_exist) //return true là đã tồn tại id
     {
       header("Location: product_add.php?exist");
     }
@@ -27,24 +24,6 @@
     {
       $result = $newProduct->insert_product();
 
-      if(!empty(array_filter($_FILES['files']['name']))) {
-          // Loop through each file in files[] array
-          foreach ($_FILES['files']['tmp_name'] as $key => $value)
-          {
-            $file_tmpname = $_FILES['files']['tmp_name'][$key];
-            $file_name = $_FILES['files']['name'][$key];
-            // Set upload file path
-            $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
-            $filepath = "../../media/image/sideimage/".$timestamp.$file_name;
-            if( move_uploaded_file($file_tmpname, $filepath)) {
-                $newImage = new Image($filepath,$proId);
-                $result = $newImage->insert_image();
-            }
-            else {
-                echo "Error uploading {$file_name} <br />";
-            }
-          }
-      }
       ///notification
       if(!$result)
       {
@@ -52,6 +31,24 @@
       }
       else
       {
+        if(!empty(array_filter($_FILES['files']['name']))) {
+            // Loop through each file in files[] array
+            foreach ($_FILES['files']['tmp_name'] as $key => $value)
+            {
+              $file_tmpname = $_FILES['files']['tmp_name'][$key];
+              $file_name = $_FILES['files']['name'][$key];
+              // Set upload file path
+              $timestamp = date("Y").date("m").date("d").date("h").date("i").date("s");
+              $filepath = "../../media/image/sideimage/".$timestamp.$file_name;
+              if( move_uploaded_file($file_tmpname, $filepath)) {
+                  $newImage = new Image($filepath,$proId);
+                  $result_side = $newImage->insert_image();
+              }
+              else {
+                  echo "Error uploading {$file_name} <br />";
+              }
+            }
+        }
         header("Location: product_add.php?inserted");
       }
     }

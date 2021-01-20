@@ -2,8 +2,6 @@
 <html lang="vi"><?php
   $title = "Product Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/product_class.php");
-  $pros = Product::list_product();
 
   if(isset($_POST["delete_product"])){
     $proId = $_POST["delete_product_id"];

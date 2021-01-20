@@ -25,5 +25,15 @@
         if (!isset($_SESSION)){
             session_start();
         }
+
+        require_once("../../database/entities/shopinfo_class.php");
+        require_once("../../database/entities/social_class.php");
+        require_once("../../database/entities/product_class.php");
+        require_once("../../database/entities/category_class.php");
+
+
+        $cates = Category::list_category();
+        $shopinfo = ShopInfo::list_info();
+        $social = Social::list_social();
     ?>
 </head>

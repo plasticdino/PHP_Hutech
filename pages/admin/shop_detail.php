@@ -3,13 +3,6 @@
 <?php
   $title = "ADMIN Station";
   include_once("partials/header.php");
-  require_once("../../database/entities/social_class.php");
-  require_once("../../database/entities/shopinfo_class.php");
-  require_once("../../database/entities/banner_class.php");
-
-  $social = Social::list_social();
-  $shop_info = ShopInfo::list_info();
-  $banner = Banner::list_banner();
 ?>
 <body>
   <div class="container-scroller">
