@@ -86,7 +86,7 @@
                                             <td class='qua-col'>
                                                 <div class='quantity'>
                                                     <div class='pro-qty'>
-                                                        <input type='number' oninput='calc()' id='txtquantity' value=".$item["quantity"].">
+                                                        <input type='number'  id='txtquantity' value=".$item["quantity"].">
                                                     </div>
                                                 </div>
                                             </td>
@@ -243,27 +243,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/jquery.dd.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
 </body>
-<script>
-    function calc() 
-    {
-        var price = document.getElementById("txtprice").innerHTML;
-        var noTickets = document.getElementById("txtquantity").value;
-        var total = parseFloat(price) * noTickets
-        if (!isNaN(total))
-            document.getElementById("total-price").innerHTML = total;
-    }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    // const elements = document.querySelectorAll('.price');
+    // Array.from(elements).forEach((element, index) => {
+    //     alert(element);
+    // });
+    // $(".price").each(function() {
+    //     $('.qua-col',this).find("#txtquantity").onchange = function(){
+    //         $("#total-price").text(this.value);
+    //     }
+    // });
+        // .onchange = function(){
+        //     $("#total-price").text(this.value);
+        // }
+    // });
+    // function calc() 
+    // {
+    //     var price = document.getElementById("txtprice").innerHTML;
+    //     var noTickets = document.getElementById("txtquantity").value;
+    //     var total = parseFloat(price) * noTickets;
+    //     if (!isNaN(total))
+    //         // document.getElementById("total-price").innerHTML = total;
+    //         $("#total-price").text(total);
+    // }
 </script>
 <!-- <script>
     $('#quantity').on('change', function(){

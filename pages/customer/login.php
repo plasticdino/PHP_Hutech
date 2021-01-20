@@ -15,6 +15,7 @@
     if (isset($_POST['btn-login'])){
         $user = User::checkLogin($_POST['username'],$_POST['password']);
         if (!empty($user)){
+            $_SESSION['userid'] = $user['UserId'];
             $_SESSION['username'] = $user['Username'];
             $_SESSION['role'] = $user['Role'];
             $_SESSION['email'] = $user['Email'];

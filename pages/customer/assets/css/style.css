@@ -538,6 +538,13 @@ ol {
 	display: inline-block;
 }
 
+.inner-header .nav-right li.cart-icon a:hover {
+	color: #e7ab3c;
+	position: relative;
+	display: inline-block;
+	cursor:pointer;
+}
+
 .inner-header .nav-right li.cart-icon a span {
 	position: absolute;
 	right: -8px;

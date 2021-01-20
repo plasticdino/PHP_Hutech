@@ -1,7 +1,7 @@
 <?php
   if (isset($_SESSION)){
     $username = $_SESSION['username'];
-}
+  }
 ?>    
     
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -33,6 +33,10 @@
               <span class="nav-profile-name"><?php echo $username; ?></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a href="..\customer\index.php" class="dropdown-item">
+                <i class="mdi mdi-account text-primary"></i>
+                Customer
+              </a>
               <a class="dropdown-item">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings

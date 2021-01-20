@@ -39,7 +39,7 @@ require_once("../../database/entities/category_class.php");
                 </div>
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
-                        <li class="cart-icon">
+                        <li class="cart-icon" >
                           <a href=".\login.php" class="login-panel">
                             <?php 
                                 if(isset($_SESSION["username"])){
@@ -50,65 +50,71 @@ require_once("../../database/entities/category_class.php");
                             ?>
                             <i class="fa fa-user"></i>
                           </a>
-                          <?php 
-                                if(isset($_SESSION["username"])){
-                                    echo '<ul class="dropdown">';
-                                    if ((isset($_SESSION['role'])) && ($_SESSION['role'] == 1)){
-                                        echo "<li><a href='../admin/index.php'>Manage</a></li>";
+                            <?php 
+                                    if(isset($_SESSION["username"])){
+                                        echo "<div class='cart-hover' style='width:150px; right:0px; top:30px'>";
+                                        echo '<div class="select-items">';
+                                        if ((isset($_SESSION['role'])) && ($_SESSION['role'] == 1)){
+                                            echo "<tr><a class='hover-item' href='../admin/index.php'>Admin</a></tr>";
+                                        }
+                                        echo '<tr><a href="logout.php">Log Out</a></tr>';
+                                        echo '</div></div>';
                                     }
-                                        echo '<li><a href="logout.php">Log Out</a></li>';
-                                    echo '</ul>';
-                                }
-                            ?>
+                                ?>
                         </li>
                         <li class="cart-icon">
                             <a href="#">
                                 <i class="icon_bag_alt"></i>
-                                <span>3</span>
+                                <?php
+                                    if (isset($_SESSION["cart_items"]) && count($_SESSION["cart_items"])>0){
+                                        echo "<span>".count($_SESSION["cart_items"])."</span>";
+                                    }
+                                ?>
                             </a>
                             <div class="cart-hover">
                                 <div class="select-items">
                                     <table>
                                         <tbody>
-                                            <tr>
-                                                <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
+                                        <?php 
+                                            $total_money = 0;
+                                            if (isset($_SESSION["cart_items"]) && count($_SESSION["cart_items"]) > 0) {
+                                                foreach ($_SESSION["cart_items"] as $item){
+                                                    $id = $item["pro_id"];
+                                                    $prod = Product::get_product($id);
+                                                    $total_money += $item["quantity"]*$prod["ProductPrice"];
+                                                    echo "<tr class='price'>
+                                                        <td class='si-pic'><img style='width=90px; height:80px' alt='' src='".$prod["ProductImage"]."'/></td>
+                                                    
+                                                        <td class='si-text'>
+                                                            <div class='product-selected'>
+                                                                <p id='txtprice'>".$prod["ProductPrice"]."VNĐ x ".$item["quantity"]."</p>
+                                                                <h6>".$prod["ProductName"]."</h6>
+                                                            </div>
+                                                        </td>
+                                                        <td class='si-close'>
+                                                            <i class='ti-close'></i>
+                                                        </td>
+                                                    </tr>";
+                                                }
+                                            }
+                                            else{
+                                                echo "Nothing in your cart";
+                                            }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="select-total">
                                     <span>total:</span>
-                                    <h5>$120.00</h5>
+                                    <h5><?php echo $total_money ?> VNĐ</h5>
                                 </div>
                                 <div class="select-button">
                                     <a href="./shopping-cart.php" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="./checkout.php" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
                         </li>
-                        <li class="cart-price">$150.00</li>
-
+                        <li class="cart-price"><?php echo $total_money ?> VNĐ</li>
                     </ul>
                 </div>
             </div>
