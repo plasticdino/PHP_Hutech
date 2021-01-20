@@ -37,7 +37,7 @@
                 <i class="mdi mdi-account text-primary"></i>
                 Customer
               </a>
-              <a class="dropdown-item" href="../admin/index.php">
+              <a class="dropdown-item" href="..\customer\logout.php">
                 <i class="mdi mdi-logout text-primary"></i>
                 Log out
               </a>

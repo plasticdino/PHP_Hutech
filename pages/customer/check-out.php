@@ -23,7 +23,7 @@
                 $id = $item["pro_id"];
                 $prod = Product::get_product($id);
                 $total_price = $item["quantity"]*$prod["ProductPrice"];
-                $new_orderitem = new Orderitem($result[1],$item["quantity"],$total_price);
+                $new_orderitem = new Orderitem($result[1],$item["quantity"],$total_price,$id);
                 $new_orderitem_result = $new_orderitem->insert_orderitem();
                 if (!$new_orderitem_result){
                     $done = false;
