@@ -41,7 +41,7 @@ require_once("../../database/entities/category_class.php");
                     <ul class="nav-right">
                         <li class="cart-icon" >
                           <a href=".\login.php" class="login-panel">
-                            <?php 
+                            <?php
                                 if(isset($_SESSION["username"])){
                                     echo $_SESSION["username"];
                                 }else{
@@ -50,7 +50,7 @@ require_once("../../database/entities/category_class.php");
                             ?>
                             <i class="fa fa-user"></i>
                           </a>
-                            <?php 
+                            <?php
                                     if(isset($_SESSION["username"])){
                                         echo "<div class='cart-hover' style='width:150px; right:0px; top:30px'>";
                                         echo '<div class="select-items">';
@@ -75,7 +75,7 @@ require_once("../../database/entities/category_class.php");
                                 <div class="select-items">
                                     <table>
                                         <tbody>
-                                        <?php 
+                                        <?php
                                             $total_money = 0;
                                             if (isset($_SESSION["cart_items"]) && count($_SESSION["cart_items"]) > 0) {
                                                 foreach ($_SESSION["cart_items"] as $item){
@@ -84,7 +84,7 @@ require_once("../../database/entities/category_class.php");
                                                     $total_money += $item["quantity"]*$prod["ProductPrice"];
                                                     echo "<tr class='price'>
                                                         <td class='si-pic'><img style='width=90px; height:80px' alt='' src='".$prod["ProductImage"]."'/></td>
-                                                    
+
                                                         <td class='si-text'>
                                                             <div class='product-selected'>
                                                                 <p id='txtprice'>".$prod["ProductPrice"]."VNĐ x ".$item["quantity"]."</p>
@@ -106,7 +106,7 @@ require_once("../../database/entities/category_class.php");
                                 </div>
                                 <div class="select-total">
                                     <span>total:</span>
-                                    <h5><?php echo $total_money ?> VNĐ</h5>
+                                    <h5><?php echo number_format($total_money); ?> VNĐ</h5>
                                 </div>
                                 <div class="select-button">
                                     <a href="./shopping-cart.php" class="primary-btn view-card">VIEW CARD</a>
@@ -114,7 +114,7 @@ require_once("../../database/entities/category_class.php");
                                 </div>
                             </div>
                         </li>
-                        <li class="cart-price"><?php echo $total_money ?> VNĐ</li>
+                        <li class="cart-price"><?php echo number_format($total_money); ?> VNĐ</li>
                     </ul>
                 </div>
             </div>
