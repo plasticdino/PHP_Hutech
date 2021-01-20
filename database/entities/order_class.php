@@ -4,29 +4,31 @@ require_once("../../database/dbservice.php");
 class Ordering{
   public $id;
   public $userid;
-  public $orderdate;
   public $state;
 
-  public function __construct ($userid, $orderdate, $state)
+  public function __construct ($userid, $state)
   {
     $this->userid = $userid;
-    $this->orderdate = $orderdate;
     $this->state = $state;
   }
 
   public function insert_order(){
     $db = new Db();
-    $get_id = "SELECT OrderingId FROM ordering where UserId =".$this->userid."ORDER BY OrderingId DESC LIMIT 1";
+    $get_id = "SELECT OrderingId FROM ordering where UserId =".$this->userid." ORDER BY OrderingId DESC LIMIT 1";
     $id = $db->select_to_array($get_id);
-    $sql = "INSERT INTO ordering (UserId, OrderDate, State) VALUES (
+    if (empty($id)){
+        $idx = 0;
+    }else{
+        $idx = intval(explode("_",$id[0]['OrderingId'])[0])+1;
+    }
+    $prikey = $idx."_".$this->userid;
+    $sql = "INSERT INTO ordering (OrderingId, UserId, OrderDate, State) VALUES (
+            '$prikey',
             '$this->userid', 
-            '$this->orderdate',
-            '$this->state')
-            SELECT LAST_INSERT_ID() AS OrderId";
-    // print_r($sql);
-    // exit(0);
+            now(),
+            '$this->state')";
     $result = $db->query_execute($sql);
-    return $result;
+    return array($result,$prikey);
   }
   public function checkUserExists($username){
     $db = new Db();

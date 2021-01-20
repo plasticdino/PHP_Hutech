@@ -5,6 +5,9 @@
     $title = "Shopping Cart";
     include_once("partials/header.php");
     include_once("partials/navbar.php");
+    require_once("../../database/entities/order_class.php");
+    require_once("../../database/entities/orderitem_class.php");
+    require_once("../../database/entities/product_class.php");
     if (isset($_SESSION)){
         $userid = $_SESSION["userid"];
         $address = $_SESSION["address"];
@@ -12,7 +15,35 @@
         $email = $_SESSION["email"];
     }
     if (isset($_POST["btn-order"])){
-        $new_order 
+        $new_order = new Ordering($userid,0);
+        $result = $new_order->insert_order();
+        if ($result[0]){
+            $done = true;
+            foreach ($_SESSION["cart_items"] as $item){
+                $id = $item["pro_id"];
+                $prod = Product::get_product($id);
+                $total_price = $item["quantity"]*$prod["ProductPrice"];
+                $new_orderitem = new Orderitem($result[1],$item["quantity"],$total_price);
+                $new_orderitem_result = $new_orderitem->insert_orderitem();
+                if (!$new_orderitem_result){
+                    $done = false;
+                    break;
+                }
+            }
+            if ($done){
+                unset($_SESSION["cart_items"]);
+                // header("Location: index.php");
+                ?>
+                <script> 
+                    alert('Đặt hàng thành công!')
+                    location.replace("index.php"); 
+                </script>
+                <?php
+            }
+        }
+        ?>
+            <script>alert('Có lỗi xảy ra, vui lòng kiểm tra lại dữ liệu')</script>
+        <?php 
     }
     
 ?>
