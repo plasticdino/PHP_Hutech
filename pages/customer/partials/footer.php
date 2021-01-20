@@ -7,15 +7,20 @@
                       <?php foreach ($shopinfo as $item) { ?>
                         <li>Address: <?php echo $item["Address"]; ?></li>
                         <li>Phone: <?php echo $item["Address"]; ?></li>
+                        <li></br></li>
                       <?php } ?>
                     </ul>
-                    <div class="footer-social">
-                        <a href="<?php echo $social[0]["Link"]; ?>"><i class="fa fa-facebook"></i></a>
-                        <a href="<?php echo $social[1]["Link"]; ?>"><i class="fa fa-instagram"></i></a>
-                        <a href="<?php echo $social[2]["Link"]; ?>"><i class="fa fa-twitter"></i></a>
-                        <a href="<?php echo $social[3]["Link"]; ?>"><i class="fa fa-pinterest"></i></a>
-                    </div>
                 </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="footer-left">
+                  <div class="footer-social">
+                      <a href="<?php echo $social[0]["Link"]; ?>"><i class="fa fa-facebook"></i></a>
+                      <a href="<?php echo $social[1]["Link"]; ?>"><i class="fa fa-instagram"></i></a>
+                      <a href="<?php echo $social[2]["Link"]; ?>"><i class="fa fa-twitter"></i></a>
+                      <a href="<?php echo $social[3]["Link"]; ?>"><i class="fa fa-pinterest"></i></a>
+                  </div>
+              </div>
             </div>
             <div class="col-lg-4">
                 <div class="newslatter-item">

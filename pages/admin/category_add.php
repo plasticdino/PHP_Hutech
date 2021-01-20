@@ -14,7 +14,7 @@
     $id_exist = $newCategory->id_exist();
     if ($id_exist) //return true là đã tồn tại id
     {
-      header("Location: product_add.php?exist");
+      header("Location: category_add.php?exist");
     }
     else
     {
@@ -43,9 +43,13 @@
                     $notification = "Insert category successfully !!!";
                     include_once("partials/notify.php");
                   }
-                  else
-                  {
-
+                  else if(isset($_GET["exist"])){
+                    $notification = "Category Id exists !!!";
+                    include_once("partials/notify.php");
+                  }
+                  else if(isset($_GET["failure"])){
+                    $notification = "Category product fail !!!";
+                    include_once("partials/notify.php");
                   }
                  ?><h4 class="card-title">Add category</h4>
                 <form class="forms-sample" method="post" enctype="multipart/form-data">

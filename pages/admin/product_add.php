@@ -70,7 +70,7 @@
                     $notification = "Product Id exists !!!";
                     include_once("partials/notify.php");
                   }
-                  if(isset($_GET["failure"])){
+                  else if(isset($_GET["failure"])){
                     $notification = "Insert product fail !!!";
                     include_once("partials/notify.php");
                   }

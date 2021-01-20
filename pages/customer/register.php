@@ -28,7 +28,7 @@
             if (!$result){
                 ?>
                 <script>alert('Có lỗi xảy ra, vui lòng kiểm tra lại dữ liệu')</script>
-                <?php 
+                <?php
             }else{
                 $_SESSION['username'] = $username;
                 header("Location: login.php");
@@ -36,7 +36,7 @@
         }
     }
 
-  
+
 ?>
 <header>
     <?php include_once("partials/navbar.php"); ?>
@@ -77,7 +77,7 @@
                             <button type="submit" id="register" class="site-btn register-btn" name="btn-register">REGISTER</button>
                         </form>
                         <div class="switch-login">
-                            <a href="./login.html" class="or-login">Or Login</a>
+                            <a href="./login.php" class="or-login">Or Login</a>
                         </div>
                     </div>
                 </div>
