@@ -1,9 +1,3 @@
-<?php
-require_once("../../database/entities/product_class.php");
-require_once("../../database/entities/category_class.php");
-  $cates = Category::list_category();
-
-?>
 <!-- <div id="preloder">
     <div class="loader"></div>
 </div> -->
@@ -134,8 +128,6 @@ require_once("../../database/entities/category_class.php");
                         <?php } ?>
                       </ul>
                     </li>
-                    <li><a href="colection.php">Collection</a></li>
-                    <li><a href="blog_list.php">Blog</a></li>
                     <li><a href="about_us.php">About us</a>
                       <ul class="dropdown">
                           <li><a href="contact.php">Contact</a></li>

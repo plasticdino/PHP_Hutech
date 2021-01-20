@@ -2,7 +2,6 @@
 <html lang="vi"><?php
   $title = "User Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/user_class.php");
   if(isset($_POST["btnsubmit"])){
     $username = $_POST["username"];
     $email = $_POST["email"];
@@ -56,7 +55,7 @@
                       value="<?php echo isset($_POST["username"])?$_POST["username"]:""; ?>"/>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group"  style="margin:50px;">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="role" id="rdbCus" value="0" checked>
                         <label class="form-check-label" for="rdbCus">

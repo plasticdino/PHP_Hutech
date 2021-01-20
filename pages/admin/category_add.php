@@ -2,7 +2,6 @@
 <html lang="vi"><?php
   $title = "Category Add";
   include_once("partials/header.php");
-  require_once("../../database/entities/category_class.php");
 
   if(isset($_POST["btnsubmit"])){
     $cateId = $_POST["txtCateId"];
@@ -12,16 +11,24 @@
 
     $newCategory = new Category($cateId,$cateName, $cateImage, $cateDesc);
 
-    $result = $newCategory->insert_category();
-    if(!$result)
+    $id_exist = $newCategory->id_exist();
+    if ($id_exist) //return true là đã tồn tại id
     {
-      header("Location: category_add.php?failure");
+      header("Location: product_add.php?exist");
     }
     else
     {
-      header("Location: category_add.php?inserted");
-
+      $result = $newCategory->insert_category();
+      if(!$result)
+      {
+        header("Location: category_add.php?failure");
+      }
+      else
+      {
+        header("Location: category_add.php?inserted");
+      }
     }
+
   }
  ?><body>
     <div class="container-scroller"><?php

@@ -2,8 +2,8 @@
   if (isset($_SESSION)){
     $username = $_SESSION['username'];
   }
-?>    
-    
+?>
+
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
@@ -37,13 +37,9 @@
                 <i class="mdi mdi-account text-primary"></i>
                 Customer
               </a>
-              <a class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="../admin/index.php">
                 <i class="mdi mdi-logout text-primary"></i>
-                Logout
+                Log out
               </a>
             </div>
           </li>

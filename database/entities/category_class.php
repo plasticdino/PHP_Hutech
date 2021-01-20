@@ -73,7 +73,7 @@ class Category{
   {
     $db = new Db();
     $sql = "SELECT CategoryId FROM Category WHERE CategoryId ='$this->id'";
-    $result = $db->query_execute($sql);
+    $result = $db->select_to_array($sql);
 
     if (!empty($result))
     {
