@@ -93,7 +93,7 @@
                                             <td class='total-price'>
                                                 <span id='total-price'>".$item["quantity"]*$prod["ProductPrice"]."</span>
                                             </td>
-                                            <td><i class='ti-close'></i></td>
+                                            <td><a id='discard'><i class='ti-close'></i></a></td>
                                             </tr>";
                                         }
                                     }

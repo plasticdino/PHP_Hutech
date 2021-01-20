@@ -3,8 +3,9 @@
 </div> -->
 <!-- Header Section Begin -->
 <?php 
-    if (isset($_GET["btn-search"]) && !empty($_GET["search"])){
-        header("Location: shop.php?search=".$_GET["search"]);
+    if (isset($_REQUEST["btn-search"]) && !empty($_GET["search"])){
+        $search = addslashes($_GET['search']);
+        header("Location: shop.php?search=".$search);
     }
 ?>
 <header class="header-section">
@@ -32,9 +33,9 @@
 								</select>
                         
                             <div class="input-group">
-                            <form method="get">
-                                <input type="text" name="search" placeholder="What do you need?">
-                                <button type="button" name="btn-search"><i class="ti-search"></i></button>
+                                <form method="get">
+                                    <input type="text" name="search" placeholder="What do you need?">
+                                    <button type="submit" name="btn-search"><i class="ti-search"></i></button>
                                 </form>
                             </div>
                         

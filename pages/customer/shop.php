@@ -16,6 +16,15 @@
       $cateid = $_GET["cateid"];
       $prods = Product::list_product_by_cateid($cateid);
     }
+  if (isset($_GET["search"])){
+    $result = array();
+    for($i = 0; $i < count($prods); $i++){
+      if (strpos(strtoupper($prods[$i]["ProductName"]),strtoupper($_GET["search"])) !== False){
+        array_push($result,$prods[$i]);
+      } 
+    }
+    $prods = $result;
+  }
   $image_list = Image::list_image();
 
 ?>
