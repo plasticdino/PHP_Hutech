@@ -26,6 +26,7 @@
     require_once("../../database/entities/social_class.php");
     require_once("../../database/entities/shopinfo_class.php");
     require_once("../../database/entities/banner_class.php");
+    require_once("../../database/entities/ordering_class.php");
     
     $pros = Product::list_product();
     $social = Social::list_social();
@@ -33,5 +34,6 @@
     $banner = Banner::list_banner();
     $n_banner = count($banner);
     $cates = Category::list_category();
+    $orders = Ordering::list_order();
     ?>
 </head>

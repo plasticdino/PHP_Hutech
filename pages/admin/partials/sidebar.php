@@ -66,7 +66,7 @@
             </a>
             <div class="collapse" id="order">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> Show order list </a></li>
+                <li class="nav-item"> <a class="nav-link" href="./order_list.php"> Show order list </a></li>
                 <li class="nav-item"> <a class="nav-link" href=""> Add new order</a></li>
               </ul>
             </div>
