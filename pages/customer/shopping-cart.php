@@ -9,7 +9,6 @@
     ini_set('display_errors','1');
     if (isset($_GET["productid"])){
         $pro_id = $_GET["productid"];
-
         $was_found = false;
         $i = 0;
         if (!isset($_SESSION["cart_items"]) || count($_SESSION["cart_items"])<1){

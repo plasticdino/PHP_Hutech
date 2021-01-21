@@ -8,12 +8,26 @@
     require_once("../../database/entities/ordering_class.php");
     require_once("../../database/entities/orderitem_class.php");
     require_once("../../database/entities/product_class.php");
-
+    if (count($_SESSION["cart_items"]) <= 0){
+      ?>
+      <script>
+        alert("Nothing to order");
+        location.replace("shopping-cart.php");
+      </script>
+      <?php
+    }
     if (isset($_SESSION["userid"])) {
         $userid = $_SESSION["userid"];
         $address = $_SESSION["address"];
         $phone = $_SESSION["phone"];
         $email = $_SESSION["email"];
+      }else{
+        ?>
+        <script>
+          alert("Please login to checkout");
+          location.replace("login.php");
+        </script>
+        <?php
       }
 
         if (isset($_POST["btn-order"]))
@@ -89,20 +103,16 @@
                         <h4>Biiling Details</h4>
                         <div class="row">
                             <div class="col-lg-12">
-                                <label for="txtname">Name<span>*</span></label>
-                                <input type="text" name="name" id="txtname">
-                            </div>
-                            <div class="col-lg-12">
                                 <label for="txtaddress">Address<span>*</span></label>
-                                <input type="text" id="txtaddress" value="<?php echo isset($address)?$address:'';?>">
+                                <input readonly type="text" id="txtaddress" value="<?php echo isset($address)?$address:'';?>">
                             </div>
                             <div class="col-lg-12">
                                 <label for="txtphone">Phone<span>*</span></label>
-                                <input type="number" id="txtphone" value="<?php echo isset($phone)?$phone:'';?>">
+                                <input readonly type="number" id="txtphone" value="<?php echo isset($phone)?$phone:'';?>">
                             </div>
                             <div class="col-lg-12">
                                 <label for="txtemail">Email<span>*</span></label>
-                                <input type="text" id="txtemail" value="<?php echo isset($email)?$email:'';?>">
+                                <input readonly type="text" id="txtemail" value="<?php echo isset($email)?$email:'';?>">
                             </div>
                             <div class="col-lg-12">
                                 <div class="create-item">

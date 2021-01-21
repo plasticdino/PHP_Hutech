@@ -118,18 +118,6 @@
                                   <li><span>CATEGORIES</span>: <?php echo $c_item["CategoryName"]; ?></li>
                               </ul>
                             </div>
-                            <div class="product-details">
-                                <div class="add-to-cart">
-                                    Quantity
-                                </div>
-                                <!-- end col -->
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" name="quans" value="1" />
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
                             <a href="shopping-cart.php?productid=<?php echo $list["ProductId"]; ?>" class="primary-btn pd-cart">Add To Cart</a>
                         </div>
                     </div>
@@ -159,7 +147,6 @@
 
     var img_list = new Array();
     img_list =<?php echo json_encode($image_list); ?>;
-
 
     ///show pop up quickview
     function clickProduct(id, catename){

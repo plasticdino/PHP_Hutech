@@ -49,7 +49,7 @@
                                 <h4 style=" color: #e7ab3c; font-size: 20px;
                                 font-weight: 700;" id="s_product_sale"></h4>
                                 Original Price: <h6 id="s_product_price"></h6>
-                                
+
                               </div>
                           </div>
                         </div>
@@ -63,7 +63,7 @@
                             <!-- end col -->
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1" />
+                                    <input type="text" id="quantity" value="1" />
                                 </div>
                             </div>
                             <!-- end col -->

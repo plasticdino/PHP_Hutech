@@ -21,7 +21,7 @@
     for($i = 0; $i < count($prods); $i++){
       if (strpos(strtoupper($prods[$i]["ProductName"]),strtoupper($_GET["search"])) !== False){
         array_push($result,$prods[$i]);
-      } 
+      }
     }
     $prods = $result;
   }
@@ -190,7 +190,7 @@
 
           $('<a href="product_detail.php?proid='+ proid +'" class="primary-btn">CHECK DETAIL</a>')
           .appendTo('.quick-button');
-          
+
         $('<a href="shopping-cart.php?productid='+ proid +'" class="primary-btn">Add to cart</a> ')
         .appendTo('.quick-button');
         }
