@@ -55,15 +55,15 @@
                             </div>
                             <div class="group-input">
                                 <label for="txtPhone">Phone</label>
-                                <input type="text" id="txtPhone" name="phone">
+                                <input type="text" id="txtPhone" name="phone" required>
                             </div>
                             <div class="group-input">
                                 <label for="txtEmail">Email</label>
-                                <input type="text" id="txtEmail" name="email">
+                                <input type="text" id="txtEmail" name="email" required>
                             </div>
                             <div class="group-input">
                                 <label for="txtAddress">Address</label>
-                                <input type="text" id="txtAddress" name="address">
+                                <input type="text" id="txtAddress" name="address" required>
                             </div>
                             <div class="group-input">
                                 <label for="pass">Password *</label>

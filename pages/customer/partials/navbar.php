@@ -2,7 +2,7 @@
     <div class="loader"></div>
 </div> -->
 <!-- Header Section Begin -->
-<?php 
+<?php
     if (isset($_REQUEST["btn-search"]) && !empty($_GET["search"])){
         $search = addslashes($_GET['search']);
         header("Location: shop.php?search=".$search);
@@ -31,14 +31,14 @@
                   } ?>
 
 								</select>
-                        
+
                             <div class="input-group">
                                 <form method="get">
                                     <input type="text" name="search" placeholder="What do you need?">
                                     <button type="submit" name="btn-search"><i class="ti-search"></i></button>
                                 </form>
                             </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-3 text-right col-md-3">
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="select-button">
                                     <a href="./shopping-cart.php" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="./checkout.php" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="./check-out.php" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
                         </li>
@@ -138,13 +138,13 @@
                         <?php } ?>
                       </ul>
                     </li>
-                    <li><a href="about_us.php">About us</a>
+                    <!-- <li><a href="about_us.php">About us</a>
                       <ul class="dropdown">
                           <li><a href="contact.php">Contact</a></li>
                           <li><a href="shipping_detail">Shipping Detail</a></li>
                           <li><a href="">Team Information</a></li>
                       </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>

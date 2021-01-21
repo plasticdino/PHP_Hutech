@@ -45,7 +45,7 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="auth">
               <i class="mdi mdi-account-card-details menu-icon"></i>
               <span class="menu-title">User</span>
@@ -70,6 +70,6 @@
                 <li class="nav-item"> <a class="nav-link" href=""> Add new order</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
         </ul>
       </nav>

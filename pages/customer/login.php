@@ -17,7 +17,7 @@
         if (!empty($user)){
             $_SESSION['userid'] = $user['UserId'];
             $_SESSION['username'] = $user['Username'];
-            $_SESSION['role'] = $user['Role'];
+            $_SESSION['role'] = $user['Role']; // 0 là người dùng, 1 là admin
             $_SESSION['email'] = $user['Email'];
             $_SESSION['address'] = $user['Address'];
             $_SESSION['phone'] = $user['Phone'];

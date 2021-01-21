@@ -1,6 +1,10 @@
 <?php
-  if (isset($_SESSION)){
+  if (isset($_SESSION) && $_SESSION['role'] == 1){
     $username = $_SESSION['username'];
+  }
+  else
+  {
+    header ("Location: ../customer/fail.php");
   }
 ?>
 

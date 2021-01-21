@@ -8,44 +8,57 @@
     require_once("../../database/entities/order_class.php");
     require_once("../../database/entities/orderitem_class.php");
     require_once("../../database/entities/product_class.php");
-    if (isset($_SESSION)){
+
+    if (isset($_SESSION["userid"])) {
         $userid = $_SESSION["userid"];
         $address = $_SESSION["address"];
         $phone = $_SESSION["phone"];
         $email = $_SESSION["email"];
-    }
-    if (isset($_POST["btn-order"])){
-        $new_order = new Ordering($userid,0);
-        $result = $new_order->insert_order();
-        if ($result[0]){
-            $done = true;
-            foreach ($_SESSION["cart_items"] as $item){
-                $id = $item["pro_id"];
-                $prod = Product::get_product($id);
-                $total_price = $item["quantity"]*$prod["ProductPrice"];
-                $new_orderitem = new Orderitem($result[1],$item["quantity"],$total_price,$id);
-                $new_orderitem_result = $new_orderitem->insert_orderitem();
-                if (!$new_orderitem_result){
-                    $done = false;
-                    break;
+      }
+
+        if (isset($_POST["btn-order"]))
+        {
+          if (isset($_SESSION["userid"])) {
+              $userid = $_SESSION["userid"];
+              $address = $_SESSION["address"];
+              $phone = $_SESSION["phone"];
+              $email = $_SESSION["email"];
+            $new_order = new Ordering($userid,0);
+            $result = $new_order->insert_order();
+            if ($result[0]){
+                $done = true;
+                foreach ($_SESSION["cart_items"] as $item){
+                    $id = $item["pro_id"];
+                    $prod = Product::get_product($id);
+                    $total_price = $item["quantity"]*$prod["ProductPrice"];
+                    $new_orderitem = new Orderitem($result[1],$item["quantity"],$total_price,$id);
+                    $new_orderitem_result = $new_orderitem->insert_orderitem();
+                    if (!$new_orderitem_result){
+                        $done = false;
+                        break;
+                    }
+                }
+                if ($done){
+                    unset($_SESSION["cart_items"]);
+                    // header("Location: index.php");
+                    ?>
+                    <script>
+                        alert('Đặt hàng thành công!')
+                        location.replace("index.php");
+                    </script>
+                    <?php
                 }
             }
-            if ($done){
-                unset($_SESSION["cart_items"]);
-                // header("Location: index.php");
-                ?>
-                <script> 
-                    alert('Đặt hàng thành công!')
-                    location.replace("index.php"); 
-                </script>
-                <?php
-            }
+            ?>
+                <script>alert('Có lỗi xảy ra, vui lòng kiểm tra lại dữ liệu')</script>
+            <?php
         }
-        ?>
-            <script>alert('Có lỗi xảy ra, vui lòng kiểm tra lại dữ liệu')</script>
-        <?php 
+        else {
+          ?>
+              <script>alert('VUI LÒNG ĐĂNG NHẬP')</script>
+          <?php
+        }
     }
-    
 ?>
 <body>
     <div class="breacrumb-section">
@@ -110,22 +123,22 @@
                             <div class="order-total">
                                 <ul class="order-table">
                                     <li>Product <span>Total</span></li>
-                                    <?php 
+                                    <?php
                                         $total_money = 0;
                                         if (isset($_SESSION["cart_items"]) && count($_SESSION["cart_items"]) > 0) {
                                             foreach ($_SESSION["cart_items"] as $item){
                                                 $id = $item["pro_id"];
                                                 $prod = Product::get_product($id);
                                                 $total_money += $item["quantity"]*$prod["ProductPrice"];
-                                                echo "<li class='fw-normal'>".$prod["ProductName"]." x ".$item["quantity"]." <span>".$item["quantity"]*$prod["ProductPrice"]."VND</span></td>";
+                                                echo "<li class='fw-normal'>".$prod["ProductName"]." x ".$item["quantity"]." <span>".number_format($item["quantity"]*$prod["ProductPrice"])."VND</span></td>";
                                             }
                                         }
                                         else{
                                             echo "Nothing in your cart";
                                         }
                                     ?>
-                                    <li class="fw-normal">Subtotal <span><?php echo $total_money ?></span></li>
-                                    <li class="total-price">Total <span><?php echo $total_money ?></span></li>
+                                    <li class="fw-normal">Subtotal <span><?php echo number_format($total_money); ?> VND</span></li>
+                                    <li class="total-price">Total <span><?php echo  number_format($total_money); ?> VND</span></li>
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">
