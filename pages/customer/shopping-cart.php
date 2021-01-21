@@ -9,6 +9,7 @@
     ini_set('display_errors','1');
     if (isset($_GET["productid"])){
         $pro_id = $_GET["productid"];
+
         $was_found = false;
         $i = 0;
         if (!isset($_SESSION["cart_items"]) || count($_SESSION["cart_items"])<1){
@@ -29,6 +30,12 @@
             }
         }
         // header("location: shopping-cart.php");
+    }
+
+    if(isset($_GET["clearitem"]))
+    {
+      $id = $_GET["clearitem"];
+      unset($_SESSION["cart_items"][$id]);
     }
 ?>
 
@@ -69,39 +76,50 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <form method="post">
+                              <tbody>
+                                  <?php
+                                      $total_money = 0;
+                                      if (isset($_SESSION["cart_items"]) && count($_SESSION["cart_items"]) > 0) {
+                                          foreach ($_SESSION["cart_items"] as $key => $value){
+                                              $id = $value["pro_id"];
+                                              $prod = Product::get_product($id);
+                                              $total_money += $value["quantity"]*$prod["ProductPrice"];
+                                              ?>
+                                              <tr class="price">
+                                                <td class="cart-pic first-row"><img style="width:90px; height:80px" src="<?php echo $prod["ProductImage"]; ?>"/></td>
+                                                <td class="cart-title">
+                                                  <?php echo $prod["ProductName"]; ?>
+                                                </td>
+                                                <td class="p-price">
+                                                  <span id='txtprice'><?php echo $prod["ProductPrice"]; ?></span>
+                                                </td>
+                                              <td class="qua-col">
+                                                  <div class="quantity">
+                                                      <div class="pro-qty">
+                                                          <input type="number" id="txtquantity" name="btnquantity" value="<?php echo $value["quantity"]; ?>">
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td class="total-price">
+                                                  <span id="total-price"><?php echo $value["quantity"]*$prod["ProductPrice"]; ?></span>
+                                              </td>
+                                              <td>
+                                                <a href='shopping-cart.php?clearitem=<?php echo $key;?>'>
+                                                  <i class="ti-close"></i>
+                                                </a>
+                                              </td>
+                                            </tr>
                                 <?php
-                                    $total_money = 0;
-                                    if (isset($_SESSION["cart_items"]) && count($_SESSION["cart_items"]) > 0) {
-                                        foreach ($_SESSION["cart_items"] as $item){
-                                            $id = $item["pro_id"];
-                                            $prod = Product::get_product($id);
-                                            $total_money += $item["quantity"]*$prod["ProductPrice"];
-                                            echo "<tr class='price'>
-                                            <td class='cart-pic first-row'><img style='width:90px; height:80px' src='".$prod["ProductImage"]."'/></td>
-                                            <td class='cart-title'>".$prod["ProductName"]."</td>
-                                            <td class='p-price'>
-                                                <span id='txtprice'>".$prod["ProductPrice"]."</span>
-                                            </td>
-                                            <td class='qua-col'>
-                                                <div class='quantity'>
-                                                    <div class='pro-qty'>
-                                                        <input type='number'  id='txtquantity' value=".$item["quantity"].">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class='total-price'>
-                                                <span id='total-price'>".$item["quantity"]*$prod["ProductPrice"]."</span>
-                                            </td>
-                                            <td><a id='discard'><i class='ti-close'></i></a></td>
-                                            </tr>";
                                         }
-                                    }
-                                    else{
-                                        echo "Nothing in your cart";
-                                    }
-                                ?>
-                            </tbody>
+                                      }
+                                      else{
+                                          echo "Nothing in your cart";
+                                      }
+                                  ?>
+                              </tbody>
+                            </form>
+
                         </table>
                     </div>
                     <div class="row">
@@ -139,6 +157,12 @@
     include_once("partials/footer.php");
     include_once("partials/scripts.php");
      ?>
+<script>
+    function clear_pro(id)
+    {
+
+    }
+</script>
 
 </body>
 </html>

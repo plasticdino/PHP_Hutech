@@ -125,7 +125,7 @@
                                 <!-- end col -->
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1" />
+                                        <input type="text" name="quans" value="1" />
                                     </div>
                                 </div>
                                 <!-- end col -->

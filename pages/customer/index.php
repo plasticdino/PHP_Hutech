@@ -59,7 +59,7 @@
         proid = content[i].ProductId;
         proimg = content[i].ProductImage;
 
-        document.getElementById('s_product_name').innerHTML = content[i].ProductName;;
+        document.getElementById('s_product_name').innerHTML = content[i].ProductName;
         document.getElementById('s_product_description').innerHTML = content[i].ProductDescription;
         document.getElementById('s_product_storage').innerHTML = " " + content[i].Storage + " in stock";
         document.getElementById('s_product_price').innerHTML = content[i].ProductPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VND";
