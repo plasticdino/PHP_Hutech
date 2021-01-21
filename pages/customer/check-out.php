@@ -8,6 +8,14 @@
     require_once("../../database/entities/ordering_class.php");
     require_once("../../database/entities/orderitem_class.php");
     require_once("../../database/entities/product_class.php");
+    if (count($_SESSION["cart_items"]) <= 0){
+        ?>
+            <script>
+                alert("Nothing to order")
+                location.replace("shopping-cart.php");
+            </script>
+        <?php
+    }
     if (isset($_SESSION)){
         $userid = $_SESSION["userid"];
         $address = $_SESSION["address"];
