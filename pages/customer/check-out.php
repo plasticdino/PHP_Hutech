@@ -5,7 +5,7 @@
     $title = "Shopping Cart";
     include_once("partials/header.php");
     include_once("partials/navbar.php");
-    require_once("../../database/entities/order_class.php");
+    require_once("../../database/entities/ordering_class.php");
     require_once("../../database/entities/orderitem_class.php");
     require_once("../../database/entities/product_class.php");
     if (isset($_SESSION)){
@@ -29,6 +29,7 @@
                     $done = false;
                     break;
                 }
+                // $update_quantity_result = Product::update_quantity($id,$prod["Quantity"]-$item["quantity"]);
             }
             if ($done){
                 unset($_SESSION["cart_items"]);
